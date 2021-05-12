@@ -1,6 +1,6 @@
 # EzCart
 
-A nice, convinient shopping list tracker for personal use and more...
+A nice, convenient shopping list tracker for personal use and more...
 
 ## General Strucure / Idea
 
