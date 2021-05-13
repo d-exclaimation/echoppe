@@ -4,10 +4,11 @@ defmodule EzCart.Repo.Migrations.CreateUsers do
   def change do
     create table(:users, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :name, :string, null: false
-      add :username, :string, null: false
-      add :email, :string, null: false
-      add :password_hash, :binary, null: false
+      add :name, :string
+      add :username, :string
+      add :email, :string
+      add :password, :binary
+      add :password_hash, :binary
 
       timestamps()
     end

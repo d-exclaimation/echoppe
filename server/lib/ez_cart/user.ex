@@ -7,6 +7,7 @@ defmodule EzCart.User do
   schema "users" do
     field :email, :string
     field :name, :string
+    field :password, :binary
     field :password_hash, :binary
     field :username, :string
 
@@ -16,21 +17,16 @@ defmodule EzCart.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :username, :email])
-    |> put_pass_hash(attrs)
+    |> cast(attrs, [:name, :username, :email, :password, :password_hash])
+    |> put_pass_hash()
     |> validate_required([:name, :username, :email, :password_hash])
   end
 
-  @doc false
-  def put_pass_hash(
-        %Ecto.Changeset{} = changeset,
-        attrs
-      ) do
-    IO.puts(attrs["password"])
-
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
     changeset
-    |> put_change(:password_hash, attrs["password"])
+    |> change(Argon2.add_hash(password))
+    |> delete_change(:password)
   end
 
-  def put_pass_hash(changeset, _), do: changeset
+  defp put_pass_hash(changeset), do: changeset
 end

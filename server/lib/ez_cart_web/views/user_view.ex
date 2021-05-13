@@ -20,6 +20,10 @@ defmodule EzCartWeb.UserView do
     %{user: render_one(user, UserView, "user.json")}
   end
 
+  def render("login.json", %{user: user}) do
+    %{user: render_one(user, UserView, "user.json")}
+  end
+
   def render("user.json", %{
         user: %EzCart.User{id: id, name: name, username: username, email: email}
       }) do

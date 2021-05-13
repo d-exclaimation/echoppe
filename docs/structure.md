@@ -15,15 +15,10 @@ WebSocket will be the bread and butter, since most action will done using socket
 - id: `uuid`
 - name: `string`
 - username: `string`
-- credentials: `Credentials :has_one`
-- carts: `[Cart.List] :has_many`
-
-#### `Credentials`
-
-- id: `uuid`
 - email: `string`
-- password: `string`
-- user_id: `User :foreign_key`
+- password: `string :will_be_hashed`
+- password_hash: `string`
+- carts: `[Cart.List] :has_many`
 
 #### `Cart.List`
 
