@@ -5,8 +5,9 @@ defmodule EzCartWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", EzCartWeb do
+  scope "/", EzCartWeb do
     pipe_through :api
+    post "/signup", UserController, :sign_up
   end
 
   # Enables LiveDashboard only for development
