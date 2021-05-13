@@ -26,6 +26,9 @@ defmodule EzCartWeb.UserController do
     case res do
       {:ok, user} ->
         conn
+        |> fetch_session()
+        |> put_session(:user_id, user.id)
+        |> configure_session(renew: true)
         |> render("signup.json", user: user)
 
       {:error, _} ->
@@ -38,12 +41,16 @@ defmodule EzCartWeb.UserController do
     do: conn |> put_status(400) |> json(%{})
 
   @doc """
+
   """
   @spec sign_in(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_in(conn, %{"login" => %{"email" => email, "password" => password}}) do
     case authenticate(email, password) do
       {:ok, user} ->
         conn
+        |> fetch_session()
+        |> put_session(:user_id, user.id)
+        |> configure_session(renew: true)
         |> render("login.json", user: user)
 
       {:error, reason} ->

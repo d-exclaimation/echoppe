@@ -14,6 +14,8 @@ defmodule EzCart.User do
     timestamps()
   end
 
+  @type t() :: %__MODULE__{}
+
   @doc false
   def changeset(user, attrs) do
     user
@@ -29,4 +31,12 @@ defmodule EzCart.User do
   end
 
   defp put_pass_hash(changeset), do: changeset
+
+  @doc """
+  """
+  @spec get_user_by_id(String.t()) :: t()
+  def get_user_by_id(id) do
+    __MODULE__
+    |> EzCart.Repo.get!(id)
+  end
 end
