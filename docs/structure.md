@@ -1,6 +1,6 @@
 # Project Structure
 
-EasyCart
+EzCart
 
 ## Elixir API
 
@@ -46,12 +46,8 @@ WebSocket will be the bread and butter, since most action will done using socket
   id: String.t,
   name: String.t,
   username: String.t,
-  credentials: %Credentials{
-    id: String.t
-    email: String.t,
-    password: String.t,
-    user_id: String.t
-  }
+  email: String.t,
+  password: String.t,
   carts: [%Cart.List{
     id: String.t
     title: String.t,
@@ -93,7 +89,12 @@ This will done through websockets
 
 So Auth, and Getting the listing will be done in REST and once a user select / enter to a Cart List, it will create a websocket connection to handle adding, deleting, and updating. The server will emit the changes to all the user of that Cart.List and handle database updates as well
 
-The user to cart list connection is somewhat shown like: ![`this`](./images/user-to-cartlist.png)
+---
+
+![`this`](./images/user-to-cartlist.png)
+_The user to cart list connection_
+
+---
 
 ## React App
 
@@ -139,11 +140,17 @@ Yeah, idk, probably stick to built-in hooks ~~this is where I refer to my state 
 
 ### Idea
 
-Single page this time, no need for seo (I think unless, this project goes beyong and there is a demand for sharing cart list???)
+Single page this time, no need for seo (I think, unless this project goes beyond and there is a demand for sharing cart list)
 
 But I will use client side routing to get off the hastle of going through the app main screen all the time. I need to balance or work with saving data from the server, in a mantainable state, probably local user storage for fast access or maybe not (use cache from the server instead)
 
+#### Connection
+
 The web app will start off using REST to communicate to the server, this will like explained above (see Elixir API's idea). The React App will instansiate a Websocket connection once a user chooses a cart list, the socket handle all the inputs from the user and also perform real-time updates. This allow me not to create sockets immediately, idk if this is a good approach though, maybe it's better to use websocket everywhere or go with GraphQL Subscriptions which will give more flexibilities
 
-The browser to server connection for individual connection will look like:
+---
+
 ![`browser-to-server`](./images/individual-connection.png)
+_The browser to server connection for individual connection_
+
+---
