@@ -12,6 +12,7 @@ defmodule EzCartWeb.TestController do
   """
   use EzCartWeb, :controller
 
+  @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index(
         %Plug.Conn{
           assigns: %{
@@ -28,4 +29,6 @@ defmodule EzCartWeb.TestController do
       email: email
     })
   end
+
+  def index(conn, _), do: text(conn, "No data")
 end

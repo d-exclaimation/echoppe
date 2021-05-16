@@ -42,7 +42,6 @@ defmodule EzCartWeb.Router do
     case res do
       nil ->
         conn
-        |> text("No data")
 
       user_id ->
         assign(conn, :current_user, EzCart.User.get_user_by_id(user_id))
