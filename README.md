@@ -1,4 +1,4 @@
-![logo](./web/public/icons/ez-cart-icon.png)
+![logo](./web/public/icons/icon-54x54.png)
 
 # EzCart
 
