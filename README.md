@@ -1,6 +1,6 @@
-<center>
+<div style="display: flex; align-items: center; justify-content: center;">
 <img src="./web/public/icons/icon-54x54.png" width="200" />
-</center>
+</div>
 
 # EzCart
 
@@ -12,9 +12,11 @@ Refer to [the project general structure](./docs/structure.md)
 
 ## Tech-Stack
 
-> React Typescript <br>
-> Phoenix Elixir <br>
-> PostgreSQL <br>
+> <img alt="react" src="https://img.shields.io/badge/-React-35BDB2?&style=for-the-badge&logo=react&logoColor=white"/><br>
+> <img alt="typescript" src="https://img.shields.io/badge/-Typescript-blue?&style=for-the-badge&logo=typescript&logoColor=white"/><br>
+> <img alt="elixir" src="https://img.shields.io/badge/-Elixir-blueviolet?&style=for-the-badge&logo=elixir&logoColor=white"/><br>
+> <img alt="phoenix" src="https://img.shields.io/badge/-Phoenix-orange?&style=for-the-badge&logo=elixir&logoColor=white"/><br>
+> <img alt="postgres" src="https://img.shields.io/badge/-PostgreSQL-336791?&style=for-the-badge&logo=postgresql&logoColor=white"/>
 
 For reasoning, refer to [why this docs](./docs/why_tf_this.md)
 
@@ -22,5 +24,5 @@ For reasoning, refer to [why this docs](./docs/why_tf_this.md)
 
 At the moment, I am not really that open as I want to have me do most of the work, but I am open to changing this in the future. If so, refer to [contribution guidelines](./docs/how_tf_i_contribute.md)
 
-This project is licensed under Apache License Version 2.0
+This project is licensed under Apache License Version 2.0 <br>
 The icons and imagery is licensed [here](./web/public/icons/license.pdf)
