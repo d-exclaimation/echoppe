@@ -1,4 +1,6 @@
-![logo](./web/public/icons/icon-54x54.png)
+<center>
+<img src="./web/public/icons/icon-54x54.png" width="200" />
+</center>
 
 # EzCart
 
