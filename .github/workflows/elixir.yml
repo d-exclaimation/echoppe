@@ -1,4 +1,4 @@
-name: Elixir CI
+name: Elixir Phoenix CI
 
 on:
   push:
@@ -7,10 +7,23 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
-    name: Build and test
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    services:
+    postgres:
+      image: postgres:11
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: test_database
+      ports:
+        - 5432:5432
+      options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - uses: actions/checkout@v2
