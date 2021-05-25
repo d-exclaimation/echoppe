@@ -55,7 +55,10 @@ defmodule EzCartWeb.UserController do
 
       {:error, reason} ->
         conn
-        |> send_resp(if(reason == :unauthorized, do: 401, else: 404), "")
+        |> send_resp(
+          if(reason == :unauthorized, do: 401, else: 404),
+          "Invalid permission, check your crednentials"
+        )
     end
   end
 

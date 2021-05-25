@@ -1,6 +1,4 @@
-<div style="display: flex; align-items: center; justify-content: center;">
-<img src="./web/public/icons/icon-54x54.png" width="200" />
-</div>
+<img src="./web/public/icons/ex-cart-icon-small.png" width="200" />
 
 # EzCart
 
