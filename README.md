@@ -1,4 +1,4 @@
-<img src="./web/public/icons/ex-cart-icon-small.png" width="200" />
+<img src="./web/public/icons/ez-cart-icon-small.png" width="200" />
 
 # EzCart
 
