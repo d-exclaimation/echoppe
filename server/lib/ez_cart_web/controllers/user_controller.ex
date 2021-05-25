@@ -62,15 +62,12 @@ defmodule EzCartWeb.UserController do
   @spec authenticate(String.t(), String.t()) ::
           {:error, :not_found | :unauthorized} | {:ok, %User{}}
   defp authenticate(email, password) do
-    import Ecto.Query
+    res =
+      email
+      |> EzCart.UserQueries.email_query()
+      |> Repo.one()
 
-    query =
-      from(
-        u in User,
-        where: u.email == ^email
-      )
-
-    case Repo.one(query) do
+    case res do
       %User{} = user ->
         case Argon2.check_pass(user, password) do
           {:error, _} -> {:error, :unauthorized}

@@ -5,6 +5,7 @@ defmodule EzCart.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    # TODO: Add Index to email
     field :email, :string
     field :name, :string
     field :password, :binary
@@ -31,12 +32,4 @@ defmodule EzCart.User do
   end
 
   defp put_pass_hash(changeset), do: changeset
-
-  @doc """
-  """
-  @spec get_user_by_id(String.t()) :: t()
-  def get_user_by_id(id) do
-    __MODULE__
-    |> EzCart.Repo.get!(id)
-  end
 end

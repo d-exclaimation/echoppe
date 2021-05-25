@@ -29,6 +29,4 @@ defmodule EzCartWeb.TestController do
       email: email
     })
   end
-
-  def index(conn, _), do: text(conn, "No data")
 end
