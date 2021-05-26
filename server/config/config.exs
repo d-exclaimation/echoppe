@@ -7,16 +7,16 @@
 # General application configuration
 use Mix.Config
 
-config :ez_cart,
-  ecto_repos: [EzCart.Repo],
+config :eschoppe,
+  ecto_repos: [Eschoppe.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :ez_cart, EzCartWeb.Endpoint,
+config :eschoppe, EschoppeWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "yzf5JWA3u4Tn80PHd2VkpwXkuKqwG/P2INIRDwhSx2QVFZyB/q14rqFlEb0NP4hv",
-  render_errors: [view: EzCartWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: EzCart.PubSub,
+  render_errors: [view: EschoppeWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: Eschoppe.PubSub,
   live_view: [signing_salt: "x66EtE3a"]
 
 # Configures Elixir's Logger

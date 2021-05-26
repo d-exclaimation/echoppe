@@ -1,4 +1,4 @@
-defmodule EzCart.User do
+defmodule Eschoppe.User do
   use Ecto.Schema
   import Ecto.Changeset
 

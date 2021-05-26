@@ -1,6 +1,10 @@
+<p align="center">
 <img src="./web/public/icons/ez-cart-icon-small.png" width="200" />
+</p>
 
-# EzCart
+<p align="center">
+<h1> eschoppe </h1>
+</p>
 
 A nice, convenient shopping list tracker for personal use and more...
 

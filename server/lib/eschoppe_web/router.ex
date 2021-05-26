@@ -1,26 +1,26 @@
-defmodule EzCartWeb.Router do
-  use EzCartWeb, :router
+defmodule EschoppeWeb.Router do
+  use EschoppeWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   pipeline :auth_check do
-    plug EzCartWeb.Plug.Auth
+    plug EschoppeWeb.Plug.Auth
     plug :fetch_session
     plug :protect_from_forgery
   end
 
-  scope "/auth", EzCartWeb do
+  scope "/auth", EschoppeWeb do
     pipe_through :api
 
-    scope "/v1-imposter" do
+    scope "/v1-imposter", V1 do
       post "/signup", UserController, :sign_up
       post "/signin", UserController, :sign_in
     end
   end
 
-  scope "/test", EzCartWeb do
+  scope "/test", EschoppeWeb do
     pipe_through [:api, :auth_check]
 
     get "/", TestController, :index
@@ -38,15 +38,21 @@ defmodule EzCartWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through [EzCartWeb.Plug.Auth, :check_if_vincent, :fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: EzCartWeb.Telemetry
+      pipe_through [
+        EschoppeWeb.Plug.Auth,
+        :check_if_vincent,
+        :fetch_session,
+        :protect_from_forgery
+      ]
+
+      live_dashboard "/dashboard", metrics: EschoppeWeb.Telemetry
     end
   end
 
   @spec check_if_vincent(Plug.Conn.t(), any) :: Plug.Conn.t()
   defp check_if_vincent(%Plug.Conn{assigns: %{current_user: user}} = conn, _) do
     case user do
-      %EzCart.User{name: "vincent", email: "thisoneis4business@gmail.com"} ->
+      %Eschoppe.User{name: "vincent", email: "thisoneis4business@gmail.com"} ->
         conn
 
       _ ->

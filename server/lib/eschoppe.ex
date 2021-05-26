@@ -1,6 +1,6 @@
-defmodule EzCart do
+defmodule Eschoppe do
   @moduledoc """
-  EzCart keeps the contexts that define your domain
+  Eschoppe keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

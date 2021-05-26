@@ -1,17 +1,17 @@
 #
 #  user_queries.ex
-#  ez_cart
+#  eschoppe
 #
 #  Created by d-exclaimation on 12:46.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EzCart.UserQueries do
+defmodule Eschoppe.UserQueries do
   @moduledoc """
     Ecto Query for User
   """
   import Ecto.Query
-  alias EzCart.User
+  alias Eschoppe.User
 
   @doc """
   Get by email

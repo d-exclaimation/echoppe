@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :ez_cart, EzCart.Repo,
+config :eschoppe, Eschoppe.Repo,
   username: "postgres",
   password: "postgres",
-  database: "ez_cart_dev",
+  database: "eschoppe_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :ez_cart, EzCart.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :ez_cart, EzCartWeb.Endpoint,
+config :eschoppe, EschoppeWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,

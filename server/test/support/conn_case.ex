@@ -1,4 +1,4 @@
-defmodule EzCartWeb.ConnCase do
+defmodule EschoppeWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule EzCartWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use EzCartWeb.ConnCase, async: true`, although
+  by setting `use EschoppeWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,20 +22,20 @@ defmodule EzCartWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import EzCartWeb.ConnCase
+      import EschoppeWeb.ConnCase
 
-      alias EzCartWeb.Router.Helpers, as: Routes
+      alias EschoppeWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint EzCartWeb.Endpoint
+      @endpoint EschoppeWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EzCart.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Eschoppe.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(EzCart.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Eschoppe.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

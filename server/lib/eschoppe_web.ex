@@ -1,12 +1,12 @@
-defmodule EzCartWeb do
+defmodule EschoppeWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use EzCartWeb, :controller
-      use EzCartWeb, :view
+      use EschoppeWeb, :controller
+      use EschoppeWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule EzCartWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: EzCartWeb
+      use Phoenix.Controller, namespace: EschoppeWeb
 
       import Plug.Conn
-      import EzCartWeb.Gettext
-      alias EzCartWeb.Router.Helpers, as: Routes
+      import EschoppeWeb.Gettext
+      alias EschoppeWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/ez_cart_web/templates",
-        namespace: EzCartWeb
+        root: "lib/eschoppe_web/templates",
+        namespace: EschoppeWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -54,7 +54,7 @@ defmodule EzCartWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import EzCartWeb.Gettext
+      import EschoppeWeb.Gettext
     end
   end
 
@@ -63,9 +63,9 @@ defmodule EzCartWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import EzCartWeb.ErrorHelpers
-      import EzCartWeb.Gettext
-      alias EzCartWeb.Router.Helpers, as: Routes
+      import EschoppeWeb.ErrorHelpers
+      import EschoppeWeb.Gettext
+      alias EschoppeWeb.Router.Helpers, as: Routes
     end
   end
 

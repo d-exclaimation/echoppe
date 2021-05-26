@@ -1,4 +1,4 @@
-defmodule EzCart.Repo.Migrations.CreateUsers do
+defmodule Eschoppe.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

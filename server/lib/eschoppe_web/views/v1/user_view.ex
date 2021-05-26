@@ -1,17 +1,17 @@
 #
 #  user_view.ex
-#  ez_cart
+#  eschoppe
 #
 #  Created by d-exclaimation on 08:45.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EzCartWeb.UserView do
+defmodule EschoppeWeb.V1.UserView do
   @moduledoc """
   Render JSON
   """
-  use EzCartWeb, :view
-  alias EzCartWeb.UserView
+  use EschoppeWeb, :view
+  alias EschoppeWeb.V1.UserView
 
   @doc """
   """
@@ -25,7 +25,7 @@ defmodule EzCartWeb.UserView do
   end
 
   def render("user.json", %{
-        user: %EzCart.User{id: id, name: name, username: username, email: email}
+        user: %Eschoppe.User{id: id, name: name, username: username, email: email}
       }) do
     %{
       id: id,

@@ -1,4 +1,4 @@
-defmodule EzCartWeb.ChannelCase do
+defmodule EschoppeWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule EzCartWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use EzCartWeb.ChannelCase, async: true`, although
+  by setting `use EschoppeWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule EzCartWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import EzCartWeb.ChannelCase
+      import EschoppeWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint EzCartWeb.Endpoint
+      @endpoint EschoppeWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EzCart.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Eschoppe.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(EzCart.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Eschoppe.Repo, {:shared, self()})
     end
 
     :ok

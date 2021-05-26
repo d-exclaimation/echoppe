@@ -1,5 +1,5 @@
-defmodule EzCartWeb.ErrorView do
-  use EzCartWeb, :view
+defmodule EschoppeWeb.ErrorView do
+  use EschoppeWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

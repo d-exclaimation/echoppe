@@ -1,17 +1,17 @@
 #
 #  user_controller.ex
-#  ez_cart
+#  eschoppe
 #
 #  Created by d-exclaimation on 08:12.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EzCartWeb.UserController do
+defmodule EschoppeWeb.V1.UserController do
   @moduledoc """
     User controller
   """
-  use EzCartWeb, :controller
-  alias EzCart.{Repo, User}
+  use EschoppeWeb, :controller
+  alias Eschoppe.{Repo, User}
 
   @doc """
   Sign up a new account
@@ -67,7 +67,7 @@ defmodule EzCartWeb.UserController do
   defp authenticate(email, password) do
     res =
       email
-      |> EzCart.UserQueries.email_query()
+      |> Eschoppe.UserQueries.email_query()
       |> Repo.one()
 
     case res do

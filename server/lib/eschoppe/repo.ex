@@ -1,5 +1,5 @@
-defmodule EzCart.Repo do
+defmodule Eschoppe.Repo do
   use Ecto.Repo,
-    otp_app: :ez_cart,
+    otp_app: :eschoppe,
     adapter: Ecto.Adapters.Postgres
 end

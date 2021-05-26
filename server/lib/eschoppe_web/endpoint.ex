@@ -1,16 +1,16 @@
-defmodule EzCartWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :ez_cart
+defmodule EschoppeWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :eschoppe
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_ez_cart_key",
+    key: "_eschoppe_key",
     signing_salt: "/ZA9yrtG"
   ]
 
-  socket "/socket", EzCartWeb.UserSocket,
+  socket "/socket", EschoppeWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -22,7 +22,7 @@ defmodule EzCartWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :ez_cart,
+    from: :eschoppe,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -30,7 +30,7 @@ defmodule EzCartWeb.Endpoint do
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :ez_cart
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :eschoppe
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -48,5 +48,5 @@ defmodule EzCartWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug EzCartWeb.Router
+  plug EschoppeWeb.Router
 end
