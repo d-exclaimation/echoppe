@@ -20,6 +20,14 @@ defmodule EschoppeWeb.Router do
     end
   end
 
+  scope "/mock", EschoppeWeb do
+    pipe_through [:api, :auth_check]
+
+    scope "/v1-imposter", V1 do
+      get "/static", MockController, :send_static_mock_data
+    end
+  end
+
   scope "/test", EschoppeWeb do
     pipe_through [:api, :auth_check]
 
@@ -39,8 +47,6 @@ defmodule EschoppeWeb.Router do
 
     scope "/" do
       pipe_through [
-        EschoppeWeb.Plug.Auth,
-        :check_if_vincent,
         :fetch_session,
         :protect_from_forgery
       ]
@@ -48,20 +54,4 @@ defmodule EschoppeWeb.Router do
       live_dashboard "/dashboard", metrics: EschoppeWeb.Telemetry
     end
   end
-
-  @spec check_if_vincent(Plug.Conn.t(), any) :: Plug.Conn.t()
-  defp check_if_vincent(%Plug.Conn{assigns: %{current_user: user}} = conn, _) do
-    case user do
-      %Eschoppe.User{name: "vincent", email: "thisoneis4business@gmail.com"} ->
-        conn
-
-      _ ->
-        conn
-        |> redirect(external: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-        |> halt()
-    end
-  end
-
-  defp check_if_vincent(conn, _),
-    do: conn |> redirect(external: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") |> halt()
 end
