@@ -1,6 +1,6 @@
 # Project Structure
 
-EzCart
+Echoppe, Shopping, Groceries Organizer
 
 ## Elixir API
 
