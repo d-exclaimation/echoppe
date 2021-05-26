@@ -1,5 +1,5 @@
-defmodule Eschoppe.Repo do
+defmodule Echoppe.Repo do
   use Ecto.Repo,
-    otp_app: :eschoppe,
+    otp_app: :echoppe,
     adapter: Ecto.Adapters.Postgres
 end

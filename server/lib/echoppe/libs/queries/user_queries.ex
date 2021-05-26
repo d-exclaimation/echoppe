@@ -1,17 +1,17 @@
 #
 #  user_queries.ex
-#  eschoppe
+#  echoppe
 #
 #  Created by d-exclaimation on 12:46.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule Eschoppe.UserQueries do
+defmodule Echoppe.UserQueries do
   @moduledoc """
     Ecto Query for User
   """
   import Ecto.Query
-  alias Eschoppe.User
+  alias Echoppe.User
 
   @doc """
   Get by email

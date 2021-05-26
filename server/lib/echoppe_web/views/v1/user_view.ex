@@ -1,17 +1,17 @@
 #
 #  user_view.ex
-#  eschoppe
+#  echoppe
 #
 #  Created by d-exclaimation on 08:45.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.V1.UserView do
+defmodule EchoppeWeb.V1.UserView do
   @moduledoc """
   Render JSON
   """
-  use EschoppeWeb, :view
-  alias EschoppeWeb.V1.UserView
+  use EchoppeWeb, :view
+  alias EchoppeWeb.V1.UserView
 
   @doc """
   """
@@ -25,7 +25,7 @@ defmodule EschoppeWeb.V1.UserView do
   end
 
   def render("user.json", %{
-        user: %Eschoppe.User{id: id, name: name, username: username, email: email}
+        user: %Echoppe.User{id: id, name: name, username: username, email: email}
       }) do
     %{
       id: id,

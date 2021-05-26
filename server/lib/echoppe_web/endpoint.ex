@@ -1,16 +1,16 @@
-defmodule EschoppeWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :eschoppe
+defmodule EchoppeWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :echoppe
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_eschoppe_key",
+    key: "_echoppe_key",
     signing_salt: "/ZA9yrtG"
   ]
 
-  socket "/socket", EschoppeWeb.UserSocket,
+  socket "/socket", EchoppeWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -22,7 +22,7 @@ defmodule EschoppeWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :eschoppe,
+    from: :echoppe,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -30,7 +30,7 @@ defmodule EschoppeWeb.Endpoint do
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :eschoppe
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :echoppe
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -48,5 +48,5 @@ defmodule EschoppeWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug EschoppeWeb.Router
+  plug EchoppeWeb.Router
 end

@@ -6,12 +6,12 @@
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.V1.MockView do
+defmodule EchoppeWeb.V1.MockView do
   @moduledoc """
     Echoppe Web View for Mocking
   """
-  use EschoppeWeb, :view
-  alias EschoppeWeb.V1.MockView
+  use EchoppeWeb, :view
+  alias EchoppeWeb.V1.MockView
 
   @doc """
   Render JSON

@@ -1,12 +1,12 @@
 #
 #  auth.ex
-#  eschoppe
+#  echoppe
 #
 #  Created by d-exclaimation on 13:22.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.Plug.Auth do
+defmodule EchoppeWeb.Plug.Auth do
   @moduledoc """
     Custom plugs to auth user otherwise leave
   """
@@ -36,7 +36,7 @@ defmodule EschoppeWeb.Plug.Auth do
         |> halt()
 
       user_id ->
-        assign(conn, :current_user, Eschoppe.Repo.get!(Eschoppe.User, user_id))
+        assign(conn, :current_user, Echoppe.Repo.get!(Echoppe.User, user_id))
     end
   end
 end

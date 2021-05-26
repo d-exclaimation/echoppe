@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :eschoppe, Eschoppe.Repo,
+config :echoppe, Echoppe.Repo,
   username: "postgres",
   password: "postgres",
-  database: "eschoppe_dev",
+  database: "echoppe_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :eschoppe, Eschoppe.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :eschoppe, EschoppeWeb.Endpoint,
+config :echoppe, EchoppeWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,

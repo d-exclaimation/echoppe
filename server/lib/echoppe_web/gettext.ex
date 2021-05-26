@@ -1,11 +1,11 @@
-defmodule EschoppeWeb.Gettext do
+defmodule EchoppeWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import EschoppeWeb.Gettext
+      import EchoppeWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule EschoppeWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :eschoppe
+  use Gettext, otp_app: :echoppe
 end

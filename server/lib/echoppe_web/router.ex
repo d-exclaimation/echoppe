@@ -1,17 +1,17 @@
-defmodule EschoppeWeb.Router do
-  use EschoppeWeb, :router
+defmodule EchoppeWeb.Router do
+  use EchoppeWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   pipeline :auth_check do
-    plug EschoppeWeb.Plug.Auth
+    plug EchoppeWeb.Plug.Auth
     plug :fetch_session
     plug :protect_from_forgery
   end
 
-  scope "/auth", EschoppeWeb do
+  scope "/auth", EchoppeWeb do
     pipe_through :api
 
     scope "/v1-imposter", V1 do
@@ -20,7 +20,7 @@ defmodule EschoppeWeb.Router do
     end
   end
 
-  scope "/mock", EschoppeWeb do
+  scope "/mock", EchoppeWeb do
     pipe_through [:api, :auth_check]
 
     scope "/v1-imposter", V1 do
@@ -28,7 +28,7 @@ defmodule EschoppeWeb.Router do
     end
   end
 
-  scope "/test", EschoppeWeb do
+  scope "/test", EchoppeWeb do
     pipe_through [:api, :auth_check]
 
     get "/", TestController, :index
@@ -51,7 +51,7 @@ defmodule EschoppeWeb.Router do
         :protect_from_forgery
       ]
 
-      live_dashboard "/dashboard", metrics: EschoppeWeb.Telemetry
+      live_dashboard "/dashboard", metrics: EchoppeWeb.Telemetry
     end
   end
 end

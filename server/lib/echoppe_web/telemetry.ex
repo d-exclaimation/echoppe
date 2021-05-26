@@ -1,4 +1,4 @@
-defmodule EschoppeWeb.Telemetry do
+defmodule EchoppeWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,11 +31,11 @@ defmodule EschoppeWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("eschoppe.repo.query.total_time", unit: {:native, :millisecond}),
-      summary("eschoppe.repo.query.decode_time", unit: {:native, :millisecond}),
-      summary("eschoppe.repo.query.query_time", unit: {:native, :millisecond}),
-      summary("eschoppe.repo.query.queue_time", unit: {:native, :millisecond}),
-      summary("eschoppe.repo.query.idle_time", unit: {:native, :millisecond}),
+      summary("echoppe.repo.query.total_time", unit: {:native, :millisecond}),
+      summary("echoppe.repo.query.decode_time", unit: {:native, :millisecond}),
+      summary("echoppe.repo.query.query_time", unit: {:native, :millisecond}),
+      summary("echoppe.repo.query.queue_time", unit: {:native, :millisecond}),
+      summary("echoppe.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
@@ -49,7 +49,7 @@ defmodule EschoppeWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {EschoppeWeb, :count_users, []}
+      # {EchoppeWeb, :count_users, []}
     ]
   end
 end

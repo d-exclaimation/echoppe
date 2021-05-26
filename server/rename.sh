@@ -2,11 +2,11 @@
 
 set -e
 
-CURRENT_NAME="EzCart"
-CURRENT_OTP="ez_cart"
+CURRENT_NAME="Echoppe"
+CURRENT_OTP="echoppe"
 
-NEW_NAME="Eschoppe"
-NEW_OTP="eschoppe"
+NEW_NAME="Echoppe"
+NEW_OTP="echoppe"
 
 git grep -l $CURRENT_OTP | xargs sed -i '' -e "s/$CURRENT_OTP/$NEW_OTP/g"
 git grep -l $CURRENT_NAME | xargs sed -i '' -e "s/$CURRENT_NAME/$NEW_NAME/g"

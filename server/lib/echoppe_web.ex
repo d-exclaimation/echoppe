@@ -1,12 +1,12 @@
-defmodule EschoppeWeb do
+defmodule EchoppeWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use EschoppeWeb, :controller
-      use EschoppeWeb, :view
+      use EchoppeWeb, :controller
+      use EchoppeWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule EschoppeWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: EschoppeWeb
+      use Phoenix.Controller, namespace: EchoppeWeb
 
       import Plug.Conn
-      import EschoppeWeb.Gettext
-      alias EschoppeWeb.Router.Helpers, as: Routes
+      import EchoppeWeb.Gettext
+      alias EchoppeWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/eschoppe_web/templates",
-        namespace: EschoppeWeb
+        root: "lib/echoppe_web/templates",
+        namespace: EchoppeWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -54,7 +54,7 @@ defmodule EschoppeWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import EschoppeWeb.Gettext
+      import EchoppeWeb.Gettext
     end
   end
 
@@ -63,9 +63,9 @@ defmodule EschoppeWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import EschoppeWeb.ErrorHelpers
-      import EschoppeWeb.Gettext
-      alias EschoppeWeb.Router.Helpers, as: Routes
+      import EchoppeWeb.ErrorHelpers
+      import EchoppeWeb.Gettext
+      alias EchoppeWeb.Router.Helpers, as: Routes
     end
   end
 

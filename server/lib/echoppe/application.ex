@@ -1,4 +1,4 @@
-defmodule Eschoppe.Application do
+defmodule Echoppe.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,27 +8,27 @@ defmodule Eschoppe.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Eschoppe.Repo,
+      Echoppe.Repo,
       # Start the Telemetry supervisor
-      EschoppeWeb.Telemetry,
+      EchoppeWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Eschoppe.PubSub},
+      {Phoenix.PubSub, name: Echoppe.PubSub},
       # Start the Endpoint (http/https)
-      EschoppeWeb.Endpoint
-      # Start a worker by calling: Eschoppe.Worker.start_link(arg)
-      # {Eschoppe.Worker, arg}
+      EchoppeWeb.Endpoint
+      # Start a worker by calling: Echoppe.Worker.start_link(arg)
+      # {Echoppe.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Eschoppe.Supervisor]
+    opts = [strategy: :one_for_one, name: Echoppe.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    EschoppeWeb.Endpoint.config_change(changed, removed)
+    EchoppeWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

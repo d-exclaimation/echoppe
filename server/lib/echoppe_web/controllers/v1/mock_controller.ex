@@ -6,11 +6,11 @@
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.V1.MockController do
+defmodule EchoppeWeb.V1.MockController do
   @moduledoc """
     Mocking controller for fake data test
   """
-  use EschoppeWeb, :controller
+  use EchoppeWeb, :controller
 
   @grocery_tag "gr-tag"
   @urgent_tag "ur-tag"

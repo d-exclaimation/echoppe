@@ -1,5 +1,5 @@
-defmodule EschoppeWeb.ErrorView do
-  use EschoppeWeb, :view
+defmodule EchoppeWeb.ErrorView do
+  use EchoppeWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

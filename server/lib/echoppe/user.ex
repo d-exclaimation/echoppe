@@ -1,4 +1,4 @@
-defmodule Eschoppe.User do
+defmodule Echoppe.User do
   use Ecto.Schema
   import Ecto.Changeset
 

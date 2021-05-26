@@ -1,4 +1,4 @@
-defmodule Eschoppe.DataCase do
+defmodule Echoppe.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Eschoppe.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Eschoppe.DataCase, async: true`, although
+  by setting `use Echoppe.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule Eschoppe.DataCase do
 
   using do
     quote do
-      alias Eschoppe.Repo
+      alias Echoppe.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Eschoppe.DataCase
+      import Echoppe.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Eschoppe.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Echoppe.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Eschoppe.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Echoppe.Repo, {:shared, self()})
     end
 
     :ok

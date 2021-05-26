@@ -1,4 +1,4 @@
-defmodule EschoppeWeb.ConnCase do
+defmodule EchoppeWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule EschoppeWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use EschoppeWeb.ConnCase, async: true`, although
+  by setting `use EchoppeWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,20 +22,20 @@ defmodule EschoppeWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import EschoppeWeb.ConnCase
+      import EchoppeWeb.ConnCase
 
-      alias EschoppeWeb.Router.Helpers, as: Routes
+      alias EchoppeWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint EschoppeWeb.Endpoint
+      @endpoint EchoppeWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Eschoppe.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Echoppe.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Eschoppe.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Echoppe.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

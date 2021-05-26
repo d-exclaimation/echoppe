@@ -1,17 +1,17 @@
 #
 #  user_controller.ex
-#  eschoppe
+#  echoppe
 #
 #  Created by d-exclaimation on 08:12.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.V1.UserController do
+defmodule EchoppeWeb.V1.UserController do
   @moduledoc """
     User controller
   """
-  use EschoppeWeb, :controller
-  alias Eschoppe.{Repo, User}
+  use EchoppeWeb, :controller
+  alias Echoppe.{Repo, User}
 
   @doc """
   Sign up a new account
@@ -67,7 +67,7 @@ defmodule EschoppeWeb.V1.UserController do
   defp authenticate(email, password) do
     res =
       email
-      |> Eschoppe.UserQueries.email_query()
+      |> Echoppe.UserQueries.email_query()
       |> Repo.one()
 
     case res do

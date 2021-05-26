@@ -1,22 +1,22 @@
 #
 #  test_controller.ex
-#  eschoppe
+#  echoppe
 #
 #  Created by d-exclaimation on 19:55.
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EschoppeWeb.TestController do
+defmodule EchoppeWeb.TestController do
   @moduledoc """
     test Controller for Auth
   """
-  use EschoppeWeb, :controller
+  use EchoppeWeb, :controller
 
   @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index(
         %Plug.Conn{
           assigns: %{
-            current_user: %Eschoppe.User{id: id, name: name, username: username, email: email}
+            current_user: %Echoppe.User{id: id, name: name, username: username, email: email}
           }
         } = conn,
         _
