@@ -5,12 +5,12 @@ defmodule Echoppe.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
-    # TODO: Add Index to email
     field :email, :string
     field :name, :string
     field :password, :binary
     field :password_hash, :binary
     field :username, :string
+    has_many :cart_list, Echoppe.Cart.List
 
     timestamps()
   end
@@ -21,6 +21,7 @@ defmodule Echoppe.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :username, :email, :password, :password_hash])
+    |> unique_constraint(:email)
     |> put_pass_hash()
     |> validate_required([:name, :username, :email, :password_hash])
   end

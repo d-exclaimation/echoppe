@@ -24,6 +24,10 @@ defmodule EchoppeWeb.V1.UserView do
     %{user: render_one(user, UserView, "user.json")}
   end
 
+  def render("me.json", %{user: user}) do
+    render_one(user, UserView, "user.json")
+  end
+
   def render("user.json", %{
         user: %Echoppe.User{id: id, name: name, username: username, email: email}
       }) do

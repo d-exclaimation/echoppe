@@ -32,7 +32,8 @@ defmodule EchoppeWeb.Plug.Auth do
     case res do
       nil ->
         conn
-        |> redirect(external: "https://www.youtube.com/watch?v=l60MnDJklnM")
+        |> put_status(401)
+        |> text("What are you doing here, mate?")
         |> halt()
 
       user_id ->

@@ -62,6 +62,13 @@ defmodule EchoppeWeb.V1.UserController do
     end
   end
 
+  @doc """
+  Me query to check for logged in client
+  """
+  @spec me(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def me(%Plug.Conn{assigns: %{current_user: user}} = conn, _),
+    do: conn |> render("me.json", user: user)
+
   @spec authenticate(String.t(), String.t()) ::
           {:error, :not_found | :unauthorized} | {:ok, %User{}}
   defp authenticate(email, password) do

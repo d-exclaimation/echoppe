@@ -17,6 +17,11 @@ defmodule EchoppeWeb.Router do
     scope "/v1-imposter", V1 do
       post "/signup", UserController, :sign_up
       post "/signin", UserController, :sign_in
+
+      scope "/" do
+        pipe_through :auth_check
+        get "/me", UserController, :me
+      end
     end
   end
 
@@ -26,12 +31,6 @@ defmodule EchoppeWeb.Router do
     scope "/v1-imposter", V1 do
       get "/static", MockController, :send_static_mock_data
     end
-  end
-
-  scope "/test", EchoppeWeb do
-    pipe_through [:api, :auth_check]
-
-    get "/", TestController, :index
   end
 
   # Enables LiveDashboard only for development

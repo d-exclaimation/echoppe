@@ -7,7 +7,9 @@ defmodule EchoppeWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_echoppe_key",
-    signing_salt: "/ZA9yrtG"
+    signing_salt: "/ZA9yrtG",
+    http_only: true,
+    same_site: "lax"
   ]
 
   socket "/socket", EchoppeWeb.UserSocket,
