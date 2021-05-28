@@ -6,7 +6,7 @@
 #  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
-defmodule EchoppeWeb.Plug.Csrf do
+defmodule EchoppeWeb.Plug.OneTimeToken do
   @moduledoc """
     Custom plugs to auth user otherwise leave
   """
@@ -20,18 +20,18 @@ defmodule EchoppeWeb.Plug.Csrf do
   def init(default), do: default
 
   @doc """
-  Auth user
+  Get one time token user
   """
   @spec call(Plug.Conn.t(), any) :: Plug.Conn.t()
   def call(%Plug.Conn{req_headers: headers} = conn, _) do
     res =
       conn
       |> fetch_session()
-      |> get_session(:csrf_token)
+      |> get_session(:one_time_token)
 
     res2 =
       headers
-      |> Enum.filter(fn {key, _} -> key == "x-csrf-token" end)
+      |> Enum.filter(fn {key, _} -> key == "one-time-token" end)
 
     cond do
       res == nil || res2 == [] ->
@@ -41,12 +41,12 @@ defmodule EchoppeWeb.Plug.Csrf do
         |> halt()
 
       true ->
-        [{"x-csrf-token", token}] = res2
+        [{"one-time-token", token}] = res2
 
         case res == token do
           true ->
             delete_csrf_token()
-            conn |> fetch_session() |> delete_session(:csrf_token)
+            conn |> fetch_session() |> delete_session(:one_time_token)
 
           false ->
             conn |> put_status(401) |> text("Cannot validate") |> halt()

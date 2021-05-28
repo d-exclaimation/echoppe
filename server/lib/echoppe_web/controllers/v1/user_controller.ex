@@ -50,8 +50,6 @@ defmodule EchoppeWeb.V1.UserController do
   """
   @spec sign_in(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_in(conn, %{"login" => %{"email" => email, "password" => password}}) do
-    token = get_csrf_token()
-
     case authenticate(email, password) do
       {:ok, user} ->
         delete_csrf_token()
@@ -60,7 +58,6 @@ defmodule EchoppeWeb.V1.UserController do
         |> fetch_session()
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
-        |> put_resp_cookie("x-csrf-token", token, http_only: false)
         |> render("login.json", user: user)
 
       {:error, reason} ->
@@ -88,7 +85,7 @@ defmodule EchoppeWeb.V1.UserController do
 
     conn
     |> fetch_session()
-    |> put_session(:csrf_token, token)
+    |> put_session(:one_time_token, token)
     |> put_resp_cookie("csrf-token", token,
       sign: false,
       http_only: false,

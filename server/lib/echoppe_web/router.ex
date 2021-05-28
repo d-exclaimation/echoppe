@@ -7,7 +7,7 @@ defmodule EchoppeWeb.Router do
 
   pipeline :auth_check do
     plug EchoppeWeb.Plug.Auth
-    plug EchoppeWeb.Plug.Csrf
+    plug EchoppeWeb.Plug.OneTimeToken
   end
 
   scope "/v1-imposter", EchoppeWeb.V1 do
