@@ -7,28 +7,37 @@ defmodule EchoppeWeb.Router do
 
   pipeline :auth_check do
     plug EchoppeWeb.Plug.Auth
-    plug :fetch_session
-    plug :protect_from_forgery
+    plug EchoppeWeb.Plug.Csrf
   end
 
-  scope "/auth", EchoppeWeb do
+  scope "/v1-imposter", EchoppeWeb.V1 do
     pipe_through :api
 
-    scope "/v1-imposter", V1 do
+    scope "/auth" do
       post "/signup", UserController, :sign_up
       post "/signin", UserController, :sign_in
+
+      scope "/" do
+        pipe_through EchoppeWeb.Plug.Auth
+        get "/csrf-prequest", UserController, :prequest
+      end
 
       scope "/" do
         pipe_through :auth_check
         get "/me", UserController, :me
       end
     end
-  end
 
-  scope "/mock", EchoppeWeb do
-    pipe_through [:api, :auth_check]
+    scope "/cart" do
+      pipe_through :auth_check
 
-    scope "/v1-imposter", V1 do
+      get "/all_list", CartController, :all_list
+      post "/new", CartController, :create_list
+    end
+
+    scope "/mock" do
+      pipe_through :auth_check
+
       get "/static", MockController, :send_static_mock_data
     end
   end

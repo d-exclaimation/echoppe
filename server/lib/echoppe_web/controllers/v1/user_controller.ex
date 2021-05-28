@@ -25,6 +25,8 @@ defmodule EchoppeWeb.V1.UserController do
 
     case res do
       {:ok, user} ->
+        delete_csrf_token()
+
         conn
         |> fetch_session()
         |> put_session(:user_id, user.id)
@@ -33,7 +35,10 @@ defmodule EchoppeWeb.V1.UserController do
 
       {:error, _} ->
         conn
-        |> send_resp(409, "")
+        |> send_resp(
+          409,
+          "The data sent does not match user changeset, properties: [:name, :username, :email. :password]"
+        )
     end
   end
 
@@ -45,12 +50,17 @@ defmodule EchoppeWeb.V1.UserController do
   """
   @spec sign_in(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_in(conn, %{"login" => %{"email" => email, "password" => password}}) do
+    token = get_csrf_token()
+
     case authenticate(email, password) do
       {:ok, user} ->
+        delete_csrf_token()
+
         conn
         |> fetch_session()
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
+        |> put_resp_cookie("x-csrf-token", token, http_only: false)
         |> render("login.json", user: user)
 
       {:error, reason} ->
@@ -68,6 +78,24 @@ defmodule EchoppeWeb.V1.UserController do
   @spec me(Plug.Conn.t(), any) :: Plug.Conn.t()
   def me(%Plug.Conn{assigns: %{current_user: user}} = conn, _),
     do: conn |> render("me.json", user: user)
+
+  @doc """
+  Prequest before sending
+  """
+  @spec prequest(PLug.Conn.t(), any) :: Plug.Conn.t()
+  def prequest(conn, _) do
+    token = get_csrf_token()
+
+    conn
+    |> fetch_session()
+    |> put_session(:csrf_token, token)
+    |> put_resp_cookie("csrf-token", token,
+      sign: false,
+      http_only: false,
+      same_site: "secure"
+    )
+    |> text("")
+  end
 
   @spec authenticate(String.t(), String.t()) ::
           {:error, :not_found | :unauthorized} | {:ok, %User{}}
