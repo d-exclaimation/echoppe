@@ -23,6 +23,8 @@ defmodule EchoppeWeb.Plug.OneTimeToken do
   Get one time token user
   """
   @spec call(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def call(%Plug.Conn{method: "GET"} = conn, _), do: conn
+
   def call(%Plug.Conn{req_headers: headers} = conn, _) do
     res =
       conn
