@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 20:23.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.V1.CartController do
@@ -11,8 +10,9 @@ defmodule EchoppeWeb.V1.CartController do
     Cart.List and Cart.Item Controller
   """
   use EchoppeWeb, :controller
-  alias Echoppe.{Cart.List, Repo, CartQueries, User}
-  import MapMerge
+  alias Echoppe.{Repo, CartQueries, CartMutations, User}
+
+  action_fallback EchoppeWeb.FallbackController
 
   @doc """
   Get all the Cart.List
@@ -24,20 +24,16 @@ defmodule EchoppeWeb.V1.CartController do
   end
 
   @doc """
+  Create a new Cart.List
   """
   @spec create_list(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
-  def create_list(%Plug.Conn{assigns: %{current_user: %User{id: id}}} = conn, %{
+  def create_list(%Plug.Conn{assigns: %{current_user: user}} = conn, %{
         "list" => list_attr
       }) do
-    res =
-      %List{}
-      |> List.changeset(list_attr &&& %{"user_id" => id})
-      |> Repo.insert()
-
-    case res do
+    case CartMutations.create_list(list_attr, user) do
       {:ok, list} ->
         conn
-        |> render("new.json", list: list)
+        |> render("new_list.json", list: list)
 
       {:error, _} ->
         conn
@@ -45,6 +41,20 @@ defmodule EchoppeWeb.V1.CartController do
           409,
           "The data sent does not match Cart.List changeset, properties: [:title, :description]"
         )
+    end
+  end
+
+  @doc """
+  Room view
+  """
+  @spec room_view(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
+  def room_view(%Plug.Conn{} = conn, %{"rid" => rid}) do
+    with {:ok, uuid} <- Ecto.UUID.cast(rid),
+         {:ok, list} <- CartQueries.get_list(uuid) do
+      conn |> send_resp(200, "Welcome to #{list.title}")
+    else
+      _ ->
+        conn |> send_resp(404, "Invalid UUID or Room does not exist")
     end
   end
 end

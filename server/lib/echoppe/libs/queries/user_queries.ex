@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 12:46.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule Echoppe.UserQueries do

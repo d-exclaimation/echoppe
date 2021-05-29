@@ -3,7 +3,7 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 21:25.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
+
 #
 
 defmodule MapMerge do

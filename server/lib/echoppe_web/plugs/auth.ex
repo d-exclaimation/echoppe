@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 13:22.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.Plug.Auth do

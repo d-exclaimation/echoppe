@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 20:42.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule Echoppe.CartQueries do
@@ -11,7 +10,7 @@ defmodule Echoppe.CartQueries do
 
   """
   import Ecto.Query
-  alias Echoppe.Cart
+  alias Echoppe.{Cart, Repo}
 
   @doc """
   Get all the list
@@ -22,5 +21,13 @@ defmodule Echoppe.CartQueries do
       li in Cart.List,
       where: li.user_id == ^uid
     )
+  end
+
+  @doc """
+  Get List from UUID
+  """
+  @spec get_list(Ecto.UUID.t()) :: {:ok, %Cart.List{}} | :error
+  def get_list(uuid) do
+    Repo.get(Cart.List, uuid)
   end
 end

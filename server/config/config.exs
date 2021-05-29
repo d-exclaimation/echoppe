@@ -28,7 +28,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :cors_plug,
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:19006"],
   max_age: 86400,
   methods: ["GET", "POST"]
 

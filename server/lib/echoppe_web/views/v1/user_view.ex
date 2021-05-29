@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 08:45.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.V1.UserView do

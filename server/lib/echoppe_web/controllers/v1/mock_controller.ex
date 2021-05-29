@@ -3,7 +3,6 @@
 #  ez_cart
 #
 #  Created by d-exclaimation on 16:56.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.V1.MockController do

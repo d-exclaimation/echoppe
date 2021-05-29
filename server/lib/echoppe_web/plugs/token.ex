@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 13:22.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.Plug.OneTimeToken do
@@ -45,13 +44,11 @@ defmodule EchoppeWeb.Plug.OneTimeToken do
       true ->
         [{"one-time-token", token}] = res2
 
-        case res == token do
-          true ->
-            delete_csrf_token()
-            conn |> fetch_session() |> delete_session(:one_time_token)
-
-          false ->
-            conn |> put_status(401) |> text("Cannot validate") |> halt()
+        if res == token do
+          delete_csrf_token()
+          conn |> fetch_session() |> delete_session(:one_time_token)
+        else
+          conn |> put_status(401) |> text("Cannot validate") |> halt()
         end
     end
   end

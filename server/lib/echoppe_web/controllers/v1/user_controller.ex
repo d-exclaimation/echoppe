@@ -3,7 +3,7 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 08:12.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
+
 #
 
 defmodule EchoppeWeb.V1.UserController do
@@ -11,19 +11,14 @@ defmodule EchoppeWeb.V1.UserController do
     User controller
   """
   use EchoppeWeb, :controller
-  alias Echoppe.{Repo, User}
+  alias Echoppe.{Repo, User, UserQueries, UserMutations}
 
   @doc """
   Sign up a new account
   """
   @spec sign_up(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_up(conn, %{"user" => user_attr}) do
-    res =
-      %User{}
-      |> User.changeset(user_attr)
-      |> Repo.insert()
-
-    case res do
+    case UserMutations.create(user_attr) do
       {:ok, user} ->
         delete_csrf_token()
 
@@ -99,7 +94,7 @@ defmodule EchoppeWeb.V1.UserController do
   defp authenticate(email, password) do
     res =
       email
-      |> Echoppe.UserQueries.email_query()
+      |> UserQueries.email_query()
       |> Repo.one()
 
     case res do

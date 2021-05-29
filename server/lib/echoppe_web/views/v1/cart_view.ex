@@ -3,7 +3,6 @@
 #  echoppe
 #
 #  Created by d-exclaimation on 20:28.
-#  Copyright © 2021 d-exclaimation. All rights reserved.
 #
 
 defmodule EchoppeWeb.V1.CartView do
@@ -20,7 +19,7 @@ defmodule EchoppeWeb.V1.CartView do
     %{data: render_many(lists, CartView, "list.json", as: :list)}
   end
 
-  def render("new.json", %{list: list}) do
+  def render("new_list.json", %{list: list}) do
     %{data: render_one(list, CartView, "list.json", as: :list)}
   end
 
