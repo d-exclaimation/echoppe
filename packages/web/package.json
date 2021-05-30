@@ -2,7 +2,9 @@
   "name": "@echoppe/web",
   "version": "0.1.0",
   "private": true,
+  "license": "Apache-2.0",
   "dependencies": {
+    "@echoppe/common": "1.0.0",
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",

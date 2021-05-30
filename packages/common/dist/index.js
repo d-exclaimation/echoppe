@@ -1,0 +1,28 @@
+"use strict";
+//
+//  index.ts
+//  echoppe
+//
+//  Created by d-exclaimation on 22:24.
+//
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.someFunction = void 0;
+var someFunction = function () {
+    console.log("hello world");
+};
+exports.someFunction = someFunction;
+__exportStar(require("./api/loginMutation"), exports);
+__exportStar(require("./api/meQuery"), exports);
+__exportStar(require("./auth/UserContext"), exports);
+__exportStar(require("./hooks/useAuth"), exports);
+__exportStar(require("./model/User"), exports);
