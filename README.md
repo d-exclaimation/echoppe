@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./app/assets/icons/ez-cart-icon-small.png" width="200" />
+<img src="./packages/web/public/icons/ez-cart-icon-small.png" width="200" />
 </p>
 
 <p align="center">
@@ -15,8 +15,8 @@ Refer to [the project general structure](./docs/structure.md)
 ## Tech-Stack
 
 > <img alt="react" src="https://img.shields.io/badge/-React-35BDB2?&style=for-the-badge&logo=react&logoColor=white"/><br>
-> <img alt="expo" src="https://img.shields.io/badge/-Expo_Web-black?&style=for-the-badge&logo=expo&logoColor=white"/><br>
-> <img alt="typescript" src="https://img.shields.io/badge/-Typescript-blue?&style=for-the-badge&logo=typescript&logoColor=white"/><br>
+> <img alt="yarn" src="https://img.shields.io/badge/-Yarn_Workspaces-2C8EBB?&style=for-the-badge&logo=yarn&logoColor=white"/><br>
+> <img alt="typescript" src="https://img.shields.io/badge/ -Typescript-blue?&style=for-the-badge&logo=typescript&logoColor=white"/><br>
 > <img alt="elixir" src="https://img.shields.io/badge/-Elixir-blueviolet?&style=for-the-badge&logo=elixir&logoColor=white"/><br>
 > <img alt="phoenix" src="https://img.shields.io/badge/-Phoenix-orange?&style=for-the-badge&logo=elixir&logoColor=white"/><br>
 > <img alt="postgres" src="https://img.shields.io/badge/-PostgreSQL-336791?&style=for-the-badge&logo=postgresql&logoColor=white"/>
