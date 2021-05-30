@@ -8,7 +8,7 @@ on:
 
 jobs:
   Build-and-Test:
-    name: Test
+    name: Build and Test Elixir Backend
     runs-on: ubuntu-latest
     services:
       db:

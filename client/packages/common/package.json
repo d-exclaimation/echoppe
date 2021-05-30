@@ -1,0 +1,13 @@
+{
+  "name": "@echoppe/common",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.0",
+    "react": "^17.0.2",
+    "typescript": "^4.3.2"
+  }
+}
