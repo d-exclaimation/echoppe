@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useContext, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Card, TextInput, Title } from "react-native-paper";
+import { Text, View } from "react-native";
 import { AuthContext } from "../auth/UserContext";
+import { InputField, TouchButton } from "../components/shared/core";
 import TabScreen from "../components/shared/TabScreen";
 
 export default function SignInScreen() {
@@ -12,64 +12,62 @@ export default function SignInScreen() {
 
   if (auth.type === "logged-in") return null;
 
-  const password = pass
-    .split("")
-    .map(() => "*")
-    .join("");
-
   const submit = () => {
     auth.authenticate(email, pass);
   };
 
   return (
     <TabScreen>
-      <Card style={{ width: "80vmin", height: "40%" }} elevation={10}>
-        <Card.Content>
-          <View
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "white",
+            paddingHorizontal: "1rem",
+            paddingVertical: "2rem",
+            borderRadius: 10,
+            borderLeftWidth: 10,
+            borderLeftColor: "#ccccaa",
+          }}
+        >
+          <Text
             style={{
-              width: "100%",
-              height: "35vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              fontSize: 24,
+              textAlign: "center",
+              width: "30rem",
+              maxWidth: "80vw",
+              padding: "1.5rem",
             }}
           >
-            <Title style={{ margin: "1vmin" }}>Sign in</Title>
-            <TextInput
-              value={email}
-              label="Email"
-              style={{ width: "90%" }}
-              onChangeText={(text) => setEmail(text)}
-            />
-            <TextInput
-              value={password}
-              label="Password"
-              style={{ width: "90%" }}
-              onChangeText={(text) => setPass(text)}
-            />
+            Sign In
+          </Text>
+          <View style={{ marginTop: "2.5rem" }}>
+            <View style={{ width: "100%", marginVertical: "1vmin" }}>
+              <InputField placeHolder="Email" />
+            </View>
+            <View style={{ width: "100%", marginVertical: "1vmin" }}>
+              <InputField secure placeHolder="Password" />
+            </View>
             <View
               style={{
-                margin: "1vmin",
-                display: "flex",
-                width: "90%",
-                alignItems: "flex-end",
-                justifyContent: "flex-end",
+                justifyContent: "center",
+                marginTop: "1.5rem",
+                alignItems: "center",
               }}
             >
-              <Button color="#d9be6c" mode="contained" onPress={submit}>
-                Submit
-              </Button>
+              <TouchButton>Sign in</TouchButton>
             </View>
           </View>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
     </TabScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
