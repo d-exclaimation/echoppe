@@ -36,40 +36,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginMutation = void 0;
-//
-//  loginMutation.ts
-//  echoppe
-//
-//  Created by d-exclaimation on 22:03.
-//
+exports.allListQuery = void 0;
 var index_1 = require("./../constants/index");
-var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
-    var resp, user, _1;
+var parseCart_1 = require("./../parser/parseCart");
+var allListQuery = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var resp, data, _1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/auth/signin", {
-                        method: "POST",
+                return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/cart/all_list", {
+                        method: "GET",
                         credentials: "include",
-                        body: JSON.stringify(body),
-                        redirect: "follow",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
                     })];
             case 1:
                 resp = _a.sent();
                 return [4 /*yield*/, resp.json()];
             case 2:
-                user = (_a.sent()).user;
-                return [2 /*return*/, user];
+                data = (_a.sent()).data;
+                return [2 /*return*/, data.map(parseCart_1.parseCart)];
             case 3:
                 _1 = _a.sent();
-                throw new Error("Invalid credentials");
+                return [2 /*return*/, []];
             case 4: return [2 /*return*/];
         }
     });
 }); };
-exports.loginMutation = loginMutation;
+exports.allListQuery = allListQuery;

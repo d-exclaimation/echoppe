@@ -5,17 +5,14 @@
 //  Created by d-exclaimation on 21:56.
 //
 
+import { __endpoint__, __version__ } from "../constants";
 import { User } from "../model/User";
 
 export const meQuery = async () => {
-  try {
-    const resp = await fetch("http://localhost:4000/v1-imposter/auth/me", {
-      method: "GET",
-      credentials: "include",
-    });
-    const user: User = await resp.json();
-    return user;
-  } catch (_) {
-    return null;
-  }
+  const resp = await fetch(`${__endpoint__}/${__version__}/auth/me`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const user: User = await resp.json();
+  return user;
 };

@@ -14,12 +14,21 @@ import {
   StatNumber,
   useColorMode,
 } from "@chakra-ui/react";
-import { AuthContext } from "@echoppe/common";
+import { AuthContext, useAllCartQuery } from "@echoppe/common";
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const { isLoading, user } = useContext(AuthContext);
+  const { isLoading, isLoggedIn, user } = useContext(AuthContext);
+  const history = useHistory();
+  const { isLoading: cartIsLoading, data } = useAllCartQuery();
   const { colorMode } = useColorMode();
+
+  if (!isLoading && !isLoggedIn) {
+    history.push("/sign-in");
+    return null;
+  }
+
   return (
     <Box justifyContent="flex-start">
       <Box
@@ -37,6 +46,12 @@ const Home: React.FC = () => {
           </SkeletonText>
         </Stat>
       </Box>
+
+      <SkeletonText isLoaded={!cartIsLoading && !isLoading}>
+        {data.map((cart) => {
+          return <Box key={cart.id}>{cart.title}</Box>;
+        })}
+      </SkeletonText>
     </Box>
   );
 };

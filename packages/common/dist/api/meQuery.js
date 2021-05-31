@@ -43,26 +43,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.meQuery = void 0;
+var constants_1 = require("../constants");
 var meQuery = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var resp, user, _1;
+    var resp, user;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch("http://localhost:4000/v1-imposter/auth/me", {
-                        method: "GET",
-                        credentials: "include",
-                    })];
+            case 0: return [4 /*yield*/, fetch(constants_1.__endpoint__ + "/" + constants_1.__version__ + "/auth/me", {
+                    method: "GET",
+                    credentials: "include",
+                })];
             case 1:
                 resp = _a.sent();
                 return [4 /*yield*/, resp.json()];
             case 2:
                 user = _a.sent();
                 return [2 /*return*/, user];
-            case 3:
-                _1 = _a.sent();
-                return [2 /*return*/, null];
-            case 4: return [2 /*return*/];
         }
     });
 }); };

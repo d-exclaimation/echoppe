@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useUserForm } from "@echoppe/common";
 import React from "react";
-import { useShadow } from "../../../../utils/chakra/useShadow";
+import { useShadow } from "../../../utils/chakra/useShadow";
 
 type Props = {
   onSubmit: (email: string, password: string) => void;

@@ -1,12 +1,17 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { loginMutation } from "../api/loginMutation";
 import { meQuery } from "./../api/meQuery";
+import { useFallbackQuery } from "./useFallbackQuery";
 
 export function useAuth() {
-  const { isLoading, error, data } = useQuery("user-session", meQuery);
+  const { isLoading, data } = useFallbackQuery(
+    "user-session",
+    meQuery,
+    () => null
+  );
   return {
     isLoading,
-    isLoggedIn: !error && !!data,
+    isLoggedIn: !!data,
     user: data,
   };
 }
@@ -16,10 +21,14 @@ type LoginSideEffects = {
   onError: () => void;
 };
 
-export function useLogin({ onSuccess, onError }: LoginSideEffects) {
+export function useLoginMutation({ onSuccess, onError }: LoginSideEffects) {
   const client = useQueryClient();
   const { mutate } = useMutation(loginMutation, {
     onSuccess: () => {
+      client.invalidateQueries({
+        predicate: (query) => query.queryKey == "",
+      });
+      client.invalidateQueries("all-cart-lists");
       client.invalidateQueries("user-session");
       onSuccess();
     },
