@@ -16,13 +16,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.someFunction = void 0;
-var someFunction = function () {
-    console.log("hello world");
-};
-exports.someFunction = someFunction;
+// Mark: APIs functions and APIs Context
 __exportStar(require("./api/loginMutation"), exports);
 __exportStar(require("./api/meQuery"), exports);
 __exportStar(require("./auth/UserContext"), exports);
+// Mark: Custom Hooks
 __exportStar(require("./hooks/useAuth"), exports);
+__exportStar(require("./hooks/useUserForm"), exports);
+// Mark: Custom Models
 __exportStar(require("./model/User"), exports);

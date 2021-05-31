@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginMutation = void 0;
 var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
-    var resp, user, e_1;
+    var resp, user, _1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -59,8 +59,8 @@ var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, f
                 user = (_a.sent()).user;
                 return [2 /*return*/, user];
             case 3:
-                e_1 = _a.sent();
-                return [2 /*return*/, null];
+                _1 = _a.sent();
+                throw new Error("Invalid credentials");
             case 4: return [2 /*return*/];
         }
     });

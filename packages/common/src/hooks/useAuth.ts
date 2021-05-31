@@ -1,40 +1,30 @@
-import { useCallback, useEffect, useState } from "react";
-import { loginMutation } from "./../api/loginMutation";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { loginMutation } from "../api/loginMutation";
 import { meQuery } from "./../api/meQuery";
-import { User } from "./../model/User";
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setLoading] = useState(true);
+  const { isLoading, error, data } = useQuery("user-session", meQuery);
+  return {
+    isLoading,
+    isLoggedIn: !error && !!data,
+    user: data,
+  };
+}
 
-  const authenticate = useCallback(
-    (email: string, password: string) => {
-      setLoading(true);
-      loginMutation({ login: { email, password } })
-        .then((user) => {
-          setUser(user);
-          setLoading(true);
-        })
-        .catch(console.error);
+type LoginSideEffects = {
+  onSuccess: () => void;
+  onError: () => void;
+};
+
+export function useLogin({ onSuccess, onError }: LoginSideEffects) {
+  const client = useQueryClient();
+  const { mutate } = useMutation(loginMutation, {
+    onSuccess: () => {
+      client.invalidateQueries("user-session");
+      onSuccess();
     },
-    [setUser, setLoading]
-  );
+    onError,
+  });
 
-  const validateAuth = useCallback(() => {
-    setLoading(true);
-    meQuery()
-      .then((user) => {
-        setUser(user);
-        setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, [setUser, setLoading]);
-
-  useEffect(() => {
-    validateAuth();
-  }, []);
-
-  const logOut = useCallback(() => setUser(null), [setUser]);
-
-  return { user, isLoading, authenticate, validateAuth, logOut };
+  return mutate;
 }

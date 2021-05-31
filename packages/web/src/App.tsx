@@ -1,33 +1,29 @@
-import {
-  Box,
-  ChakraProvider,
-  Code,
-  Grid,
-  theme,
-  VStack,
-} from "@chakra-ui/react";
-import { useAuth } from "@echoppe/common";
+import { Grid } from "@chakra-ui/react";
+import { AuthContext, useAuth } from "@echoppe/common";
 import * as React from "react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { Logo } from "./Logo";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import { ColorModeSwitcher } from "./components/shared/color/ColorModeSwitcher";
+import SignIn from "./components/user/SignIn";
 
 export const App: React.FC = () => {
-  const { user, isLoading } = useAuth();
+  const auth = useAuth();
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            {isLoading || (
-              <Code fontSize="xl" wordBreak={"break-all"}>
-                {JSON.stringify(user, null, 2)}
-              </Code>
-            )}
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <Router>
+      <Grid align="center" justify="center" minH="100vh" p=".5vmax">
+        <ColorModeSwitcher justifySelf="flex-end" />
+        <AuthContext.Provider value={auth}>
+          <Switch>
+            <Route path="/sign-in">
+              <SignIn />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </AuthContext.Provider>
+      </Grid>
+    </Router>
   );
 };

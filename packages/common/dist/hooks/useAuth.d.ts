@@ -1,8 +1,11 @@
-import { User } from "./../model/User";
 export declare function useAuth(): {
-    user: User | null;
     isLoading: boolean;
-    authenticate: (email: string, password: string) => void;
-    validateAuth: () => void;
-    logOut: () => void;
+    isLoggedIn: boolean;
+    user: import("..").User | null | undefined;
 };
+declare type LoginSideEffects = {
+    onSuccess: () => void;
+    onError: () => void;
+};
+export declare function useLogin({ onSuccess, onError }: LoginSideEffects): import("react-query").UseMutateFunction<import("..").User, unknown, import("..").UserCredentials, unknown>;
+export {};

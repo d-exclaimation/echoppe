@@ -1,10 +1,8 @@
 /// <reference types="react" />
 import { User } from "./../model/User";
 export declare type UserContext = {
-    type: "logged-in";
-    user: User;
-} | {
-    type: "logged-out";
-    authenticate: (email: string, password: string) => void;
+    isLoading: boolean;
+    isLoggedIn: boolean;
+    user: User | null | undefined;
 };
 export declare const AuthContext: import("react").Context<UserContext>;

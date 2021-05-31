@@ -15,7 +15,7 @@ export const meQuery = async () => {
     });
     const user: User = await resp.json();
     return user;
-  } catch (e) {
+  } catch (_) {
     return null;
   }
 };

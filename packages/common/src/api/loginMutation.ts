@@ -19,7 +19,7 @@ export const loginMutation = async (body: UserCredentials) => {
     });
     const { user }: LoginConfirmation = await resp.json();
     return user;
-  } catch (e) {
-    return null;
+  } catch (_) {
+    throw new Error("Invalid credentials");
   }
 };

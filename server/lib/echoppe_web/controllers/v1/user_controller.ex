@@ -28,12 +28,10 @@ defmodule EchoppeWeb.V1.UserController do
         |> configure_session(renew: true)
         |> render("signup.json", user: user)
 
-      {:error, _} ->
+      {:error, %Ecto.Changeset{errors: errors}} ->
         conn
-        |> send_resp(
-          409,
-          "The data sent does not match user changeset, properties: [:name, :username, :email. :password]"
-        )
+        |> put_status(409)
+        |> json(Enum.into(errors, %{}))
     end
   end
 
@@ -59,7 +57,7 @@ defmodule EchoppeWeb.V1.UserController do
         conn
         |> send_resp(
           if(reason == :unauthorized, do: 401, else: 404),
-          "Invalid permission, check your crednentials"
+          "Invalid permission, check your credentials"
         )
     end
   end
