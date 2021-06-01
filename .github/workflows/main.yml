@@ -44,40 +44,41 @@ jobs:
       - name: Run tests
         run: mix test
         working-directory: server
-  get-workspace-packages:
-    runs-on: ubuntu-latest
-    env: 
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Get packages in workspace
-        uses: caffco/yarn-workspace-pacakges-github-action@v1.0.0
-        with:
-          repository_path: .
 
-  common-package-test:
-    needs: [get-workspace-packages]
-    name: Common Package Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Test common package
-        run: yarn test
-        working-directory: packages/common
-  react-web-test:
-    needs: [get-workspace-packages]
-    name: React App Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: React App test
-        run: yarn test
-        working-directory: packages/web 
+  # get-workspace-packages:
+  #   runs-on: ubuntu-latest
+  #   env: 
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Get packages in workspace
+  #       uses: caffco/yarn-workspace-pacakges-github-action@v1.0.0
+  #       with:
+  #         repository_path: .
+
+  # common-package-test:
+  #   needs: [get-workspace-packages]
+  #   name: Common Package Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Set up Node
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '14'
+  #     - name: Test common package
+  #       run: yarn test
+  #       working-directory: packages/common
+  # react-web-test:
+  #   needs: [get-workspace-packages]
+  #   name: React App Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Set up Node
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '14'
+  #     - name: React App test
+  #       run: yarn test
+  #       working-directory: packages/web 
