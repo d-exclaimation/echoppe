@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from "react-query";
-import { loginMutation } from "../api/loginMutation";
-import { meQuery } from "./../api/meQuery";
+import { loginMutation } from "../api/mutations/loginMutation";
+import { meQuery } from "../api/queries/meQuery";
 import { useFallbackQuery } from "./useFallbackQuery";
 
 export function useAuth() {
   const { isLoading, data } = useFallbackQuery(
     "user-session",
     meQuery,
-    () => null
+    () => null,
+    { retry: 1 }
   );
   return {
     isLoading,
@@ -33,6 +34,7 @@ export function useLoginMutation({ onSuccess, onError }: LoginSideEffects) {
       onSuccess();
     },
     onError,
+    retry: 2,
   });
 
   return mutate;

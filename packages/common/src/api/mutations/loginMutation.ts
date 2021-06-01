@@ -4,8 +4,8 @@
 //
 //  Created by d-exclaimation on 22:03.
 //
-import { __endpoint__, __version__ } from "./../constants/index";
-import { LoginConfirmation, UserCredentials } from "./../model/User";
+import { __endpoint__, __version__ } from "../../constants/index";
+import { LoginConfirmation, UserCredentials } from "../../model/User";
 
 export const loginMutation = async (body: UserCredentials) => {
   try {

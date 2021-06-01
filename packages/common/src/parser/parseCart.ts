@@ -11,9 +11,14 @@ export const parseCart = ({
   title,
   description,
   due_date,
-}: Omit<CartList, "due_date"> & { due_date: string }): CartList => ({
+  updated_at,
+}: Omit<Omit<CartList, "due_date">, "updated_at"> & {
+  due_date: string | null;
+  updated_at: string;
+}): CartList => ({
   id,
   title,
   description,
-  due_date: new Date(due_date),
+  due_date: due_date ? new Date(due_date) : null,
+  updated_at: new Date(updated_at),
 });

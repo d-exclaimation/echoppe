@@ -14,7 +14,8 @@ defmodule EchoppeWeb.V1.CartView do
 
   @doc """
   """
-  @spec render(String.t(), map()) :: map()
+  @spec render(String.t(), %{lists: [%Echoppe.Cart.List{}]} | %{list: %Echoppe.Cart.List{}}) ::
+          map()
   def render("all_list.json", %{lists: lists}) do
     %{data: render_many(lists, CartView, "list.json", as: :list)}
   end
@@ -28,6 +29,7 @@ defmodule EchoppeWeb.V1.CartView do
       id: list.id,
       title: list.title,
       description: list.description,
+      updated_at: list.updated_at,
       due_date: list.due_date
     }
 end

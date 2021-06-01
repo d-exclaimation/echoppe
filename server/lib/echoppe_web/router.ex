@@ -40,10 +40,12 @@ defmodule EchoppeWeb.Router do
       post "/new", CartController, :create_list
     end
 
-    scope "/mock" do
-      pipe_through :auth_check
+    if Mix.env() in [:dev, :test] do
+      scope "/mock" do
+        pipe_through EchoppeWeb.Plug.Auth
 
-      get "/static", MockController, :send_static_mock_data
+        post "/new", MockController, :create_mock
+      end
     end
   end
 

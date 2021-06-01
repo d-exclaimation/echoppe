@@ -5,8 +5,8 @@
 //  Created by d-exclaimation on 21:56.
 //
 
-import { __endpoint__, __version__ } from "../constants";
-import { User } from "../model/User";
+import { __endpoint__, __version__ } from "../../constants";
+import { User } from "../../model/User";
 
 export const meQuery = async () => {
   const resp = await fetch(`${__endpoint__}/${__version__}/auth/me`, {

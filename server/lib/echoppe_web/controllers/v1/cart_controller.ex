@@ -12,7 +12,7 @@ defmodule EchoppeWeb.V1.CartController do
   use EchoppeWeb, :controller
   alias Echoppe.{Repo, CartQueries, CartMutations, User}
 
-  action_fallback EchoppeWeb.FallbackController
+  action_fallback(EchoppeWeb.FallbackController)
 
   @doc """
   Get all the Cart.List

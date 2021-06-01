@@ -1,4 +1,4 @@
 export declare function useAllCartQuery(): {
-    data: import("../model/Cart").CartList[];
+    data: import("..").CartList[];
     isLoading: boolean;
 };

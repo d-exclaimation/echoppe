@@ -6,7 +6,7 @@
 //
 
 import { Flex, Link, Text, useToast } from "@chakra-ui/react";
-import { AuthContext, useLoginMutation } from "@echoppe/common";
+import { AuthContext, enqueue, useLoginMutation } from "@echoppe/common";
 import React, { useContext } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import UserForm from "../shared/form/UserForm";
@@ -32,17 +32,17 @@ const SignIn: React.FC = () => {
         duration: 5000,
         isClosable: true,
       });
-      history.push("/");
+      enqueue(() => history.push("/"));
     },
   });
 
   if (isLoggedIn) {
-    history.push("/");
+    enqueue(() => history.push("/"));
     return null;
   }
 
   return (
-    <Flex h="50vh" align="center" justify="center">
+    <Flex h="50vh" alignItems="center" justifyContent="center">
       <UserForm
         onSubmit={(email, password) => {
           login({

@@ -4,9 +4,9 @@
 //
 //  Created by d-exclaimation on 16:54.
 //
-import { AllCarts } from "../model/Cart";
-import { __endpoint__, __version__ } from "./../constants/index";
-import { parseCart } from "./../parser/parseCart";
+import { __endpoint__, __version__ } from "../../constants/index";
+import { AllCarts } from "../../model/Cart";
+import { parseCart } from "../../parser/parseCart";
 
 export const allListQuery = async () => {
   try {

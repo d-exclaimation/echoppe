@@ -9,11 +9,11 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript />
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
         <App />
-      </ChakraProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
