@@ -1,1 +1,1 @@
-*.d.ts linguist-language=Elixir
+packages/common/dist/* -linguist-detectable
