@@ -19,7 +19,7 @@ export const App: React.FC = () => {
     <ReactRouter>
       <Grid id="zeroth-layer" minH="calc(100vh - 1vmax)" p=".5vmax">
         <Box id="first-layer">
-          <Flex id="top-navbar" flexDirection="row" mb="3vmin">
+          <Flex id="top-navbar" flexDirection="row" mb="5vmin">
             <Box id="home-link" mx="2vmin" mt="1vmin">
               <Link as={RouteLink} to="/">
                 <Text fontSize="sm">Home</Text>
