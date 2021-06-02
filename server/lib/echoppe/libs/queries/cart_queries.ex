@@ -26,7 +26,7 @@ defmodule Echoppe.CartQueries do
   @doc """
   Get List from UUID
   """
-  @spec get_list(Ecto.UUID.t()) :: {:ok, %Cart.List{}} | :error
+  @spec get_list(Ecto.UUID.t()) :: %Cart.List{} | nil
   def get_list(uuid) do
     Repo.get(Cart.List, uuid)
   end

@@ -10,7 +10,7 @@ defmodule EchoppeWeb.V1.CartController do
     Cart.List and Cart.Item Controller
   """
   use EchoppeWeb, :controller
-  alias Echoppe.{Repo, CartQueries, CartMutations, User}
+  alias Echoppe.{Repo, CartQueries, CartMutations, User, Cart}
 
   action_fallback(EchoppeWeb.FallbackController)
 
@@ -48,10 +48,11 @@ defmodule EchoppeWeb.V1.CartController do
   Room view
   """
   @spec room_view(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
-  def room_view(%Plug.Conn{} = conn, %{"rid" => rid}) do
+  def room_view(%Plug.Conn{assigns: %{current_user: _user}} = conn, %{"rid" => rid}) do
     with {:ok, uuid} <- Ecto.UUID.cast(rid),
-         {:ok, list} <- CartQueries.get_list(uuid) do
-      conn |> send_resp(200, "Welcome to #{list.title}")
+         %Cart.List{} = list <- CartQueries.get_list(uuid) do
+      conn
+      |> render("new_list.json", list: list)
     else
       _ ->
         conn |> send_resp(404, "Invalid UUID or Room does not exist")

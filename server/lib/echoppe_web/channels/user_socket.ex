@@ -1,8 +1,8 @@
 defmodule EchoppeWeb.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
-  # channel "room:*", EchoppeWeb.RoomChannel
+  # Channels
+  channel "cart:*", EchoppeWeb.CartChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -16,6 +16,7 @@ defmodule EchoppeWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   @impl true
+  @spec connect(any, Phoenix.Socket.t(), any) :: {:ok, Phoenix.Socket.t()}
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
   end
@@ -31,5 +32,6 @@ defmodule EchoppeWeb.UserSocket do
   #
   # Returning `nil` makes this socket anonymous.
   @impl true
-  def id(_socket), do: nil
+  @spec id(Phoenix.Socket.t()) :: String.t() | nil
+  def id(_), do: nil
 end
