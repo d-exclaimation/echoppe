@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useLoginMutation = exports.useAuth = void 0;
 var react_query_1 = require("react-query");
-var loginMutation_1 = require("../api/mutations/loginMutation");
-var meQuery_1 = require("../api/queries/meQuery");
-var useFallbackQuery_1 = require("./useFallbackQuery");
+var loginMutation_1 = require("../../api/mutations/loginMutation");
+var meQuery_1 = require("../../api/queries/meQuery");
+var useFallbackQuery_1 = require("../query/useFallbackQuery");
 function useAuth() {
     var _a = useFallbackQuery_1.useFallbackQuery("user-session", meQuery_1.meQuery, function () { return null; }, { retry: 1 }), isLoading = _a.isLoading, data = _a.data;
     return {

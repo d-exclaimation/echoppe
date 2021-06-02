@@ -4,7 +4,7 @@
 //
 //  Created by d-exclaimation on 17:21.
 //
-import { CartList } from "../model/Cart";
+import { CartList } from "../../model/Cart";
 
 export const parseCart = ({
   id,

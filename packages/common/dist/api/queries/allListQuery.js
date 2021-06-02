@@ -44,7 +44,7 @@ exports.allListQuery = void 0;
 //  Created by d-exclaimation on 16:54.
 //
 var index_1 = require("../../constants/index");
-var parseCart_1 = require("../../parser/parseCart");
+var parseCart_1 = require("../../utils/parser/parseCart");
 var allListQuery = function () { return __awaiter(void 0, void 0, void 0, function () {
     var resp, data, _1;
     return __generator(this, function (_a) {

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { User } from "./../model/User";
+import { User } from "../../model/User";
 
 export type UserContext = {
   isLoading: boolean;

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { User } from "./../model/User";
+import { User } from "../../model/User";
 export declare type UserContext = {
     isLoading: boolean;
     isLoggedIn: boolean;

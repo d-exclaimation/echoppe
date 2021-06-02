@@ -6,7 +6,7 @@
 //
 import { __endpoint__, __version__ } from "../../constants/index";
 import { AllCarts } from "../../model/Cart";
-import { parseCart } from "../../parser/parseCart";
+import { parseCart } from "../../utils/parser/parseCart";
 
 export const allListQuery = async () => {
   try {

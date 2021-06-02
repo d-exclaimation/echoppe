@@ -7,8 +7,8 @@ exports.useAllCartQuery = void 0;
 //
 //  Created by d-exclaimation on 19:37.
 //
-var allListQuery_1 = require("../api/queries/allListQuery");
-var useFallbackQuery_1 = require("./useFallbackQuery");
+var allListQuery_1 = require("../../api/queries/allListQuery");
+var useFallbackQuery_1 = require("../query/useFallbackQuery");
 function useAllCartQuery() {
     var _a = useFallbackQuery_1.useFallbackQuery("all-cart-lists", allListQuery_1.allListQuery, function () { return []; }, { retry: 0 }), data = _a.data, isLoading = _a.isLoading;
     return {
