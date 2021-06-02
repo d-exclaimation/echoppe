@@ -1,0 +1,9 @@
+cd packages/common
+yarn build
+yarn test
+cd ../web
+yarn test
+cd ../../server
+mix test
+cd ../
+echo "Finished"
