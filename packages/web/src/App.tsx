@@ -15,6 +15,8 @@ import SignIn from "./components/user/SignIn";
 export const App: React.FC = () => {
   const auth = useAuth();
 
+  // I "tagged" the Grid, First box, everything in navbar for portal purposes
+  // i.e. custom buttons on navbar
   return (
     <ReactRouter>
       <Grid id="zeroth-layer" minH="calc(100vh - 1vmax)" p=".5vmax">

@@ -8,12 +8,13 @@ const queryClient = new QueryClient();
 
 setLogger({
   error: () => {
-    //console.clear();
+    // TODO: turn on console.clear();
   },
   log: console.log,
   warn: console.log,
 });
 
+// TODO: Overwrite chakra theme for custom colors (probably once I have design ready)
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript />

@@ -58,50 +58,57 @@ const UserForm: React.FC<Props> = ({ footer, onSubmit }) => {
           Sign in to your account
         </Heading>
       </Flex>
-      <Box
-        p="1rem"
-        bg={color}
-        borderRadius={[6, 8, 8, 10]}
-        borderColor={border.color}
-        borderWidth={border.width}
-        mb="1.5rem"
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(email, pass);
+        }}
       >
-        <FormControl id="email">
-          <FormLabel> Email </FormLabel>
-          <Input
-            value={email}
-            onChange={updateEmail}
-            variant="flushed"
-            placeholder="Enter name"
-          />
-        </FormControl>
-
-        <FormControl mt={4} id="password">
-          <FormLabel> Password </FormLabel>
-          <InputGroup>
+        <Box
+          p="1rem"
+          bg={color}
+          borderRadius={[6, 8, 8, 10]}
+          borderColor={border.color}
+          borderWidth={border.width}
+          mb="1.5rem"
+        >
+          <FormControl id="email">
+            <FormLabel> Email </FormLabel>
             <Input
-              value={pass}
-              onChange={updatePass}
+              value={email}
+              onChange={updateEmail}
               variant="flushed"
-              type={isShown ? "text" : "password"}
-              placeholder="Enter password"
+              placeholder="Enter name"
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={toggler}>
-                {isShown ? "Hide" : "Show"}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-        </FormControl>
-      </Box>
-      <Flex justify="flex-end">
-        <Button colorScheme="green" onClick={() => onSubmit(email, pass)}>
-          Submit
-        </Button>
-      </Flex>
-      <Flex flexDir="column" align="flex-start">
-        {footer}
-      </Flex>
+          </FormControl>
+
+          <FormControl mt={4} id="password">
+            <FormLabel> Password </FormLabel>
+            <InputGroup>
+              <Input
+                value={pass}
+                onChange={updatePass}
+                variant="flushed"
+                type={isShown ? "text" : "password"}
+                placeholder="Enter password"
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={toggler}>
+                  {isShown ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+        </Box>
+        <Flex justify="flex-end">
+          <Button colorScheme="green" type="submit">
+            Submit
+          </Button>
+        </Flex>
+        <Flex flexDir="column" align="flex-start">
+          {footer}
+        </Flex>
+      </form>
     </Box>
   );
 };

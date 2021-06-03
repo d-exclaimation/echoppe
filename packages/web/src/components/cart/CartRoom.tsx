@@ -5,7 +5,15 @@
 //  Created by d-exclaimation on 17:22.
 //
 
-import { Button, Flex, Heading, Input, Skeleton, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Skeleton,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { enqueue, useAuth, useCartChannel } from "@echoppe/common";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -16,7 +24,27 @@ const CartRoom: React.FC = () => {
   const history = useHistory();
   const [input, setInput] = useState("");
   const id = useQueryParam("id");
-  const { insert, items, cart } = useCartChannel(id ?? "");
+  const toast = useToast();
+  const { insert, items, cart } = useCartChannel(id ?? "", user, {
+    joinError: ({ reason }) => {
+      toast({
+        title: reason,
+        description: "Invalid credentials, You don't have access!!",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      enqueue(() => history.push("/"));
+    },
+    pushError: () =>
+      toast({
+        title: "Cannot broadcast changes",
+        description: "400 Cannot access server, try reloading the page",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      }),
+  });
 
   if (!isAuthLoading && !user) {
     enqueue(() => history.push("/sign-in"));
@@ -63,26 +91,28 @@ const CartRoom: React.FC = () => {
             );
           })}
         </Flex>
-        <Flex>
-          <Input
-            mr="1rem"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <Button
-            colorScheme="green"
-            onClick={() => {
-              if (!input) return;
-              insert({
-                msg: input,
-                user: user!,
-              });
-              setInput("");
-            }}
-          >
-            Send
-          </Button>
-        </Flex>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!input) return;
+            insert({
+              msg: input,
+              user: user!,
+            });
+            setInput("");
+          }}
+        >
+          <Flex>
+            <Input
+              mr="1rem"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <Button colorScheme="green" type="submit">
+              Send
+            </Button>
+          </Flex>
+        </form>
       </Flex>
     </Flex>
   );
