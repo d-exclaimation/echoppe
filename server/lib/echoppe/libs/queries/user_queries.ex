@@ -7,13 +7,13 @@
 
 defmodule Echoppe.UserQueries do
   @moduledoc """
-    Ecto Query for User
+  All composable Ecto queries for User
   """
   import Ecto.Query
   alias Echoppe.User
 
   @doc """
-  Get by email
+  Get user by email (email is indexed)
   """
   @spec email_query(String.t()) :: Ecto.Query.t()
   def email_query(email) do

@@ -7,11 +7,12 @@
 
 defmodule Echoppe.CartMutations do
   @moduledoc """
-  Cart Mutations
+  Cart Mutations using Ecto ChangeSet
   """
   alias Echoppe.{Cart, Repo, User}
 
   @doc """
+  Create a new Cart using Ecto assosiations in one pipeline
   """
   @spec create_list(map(), %User{}) :: {:ok, %Cart.List{}} | {:error, Ecto.Changeset.t()}
   def create_list(list_attr, user) do

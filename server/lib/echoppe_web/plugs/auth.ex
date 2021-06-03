@@ -19,7 +19,7 @@ defmodule EchoppeWeb.Plug.Auth do
   def init(default), do: default
 
   @doc """
-  Auth user
+  Validation of user session (Auth), error will send a 401 (previously a redirect)
   """
   @spec call(Plug.Conn.t(), any) :: Plug.Conn.t()
   def call(conn, _) do

@@ -13,6 +13,7 @@ defmodule EchoppeWeb.V1.CartView do
   alias EchoppeWeb.V1.CartView
 
   @doc """
+  Render Cart.List either one or many
   """
   @spec render(String.t(), %{lists: [%Echoppe.Cart.List{}]} | %{list: %Echoppe.Cart.List{}}) ::
           map()

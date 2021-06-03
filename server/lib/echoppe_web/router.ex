@@ -5,6 +5,7 @@ defmodule EchoppeWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # Full authentication pipelines from session validation to one time token
   pipeline :auth_check do
     plug EchoppeWeb.Plug.Auth
     plug EchoppeWeb.Plug.OneTimeToken
@@ -13,25 +14,25 @@ defmodule EchoppeWeb.Router do
   scope "/v1-imposter", EchoppeWeb.V1 do
     pipe_through :api
 
-    # Authentication and User Routes
+    # Authentication and User Routes, no plugs (atm)
     scope "/auth" do
       post "/signup", UserController, :sign_up
       post "/signin", UserController, :sign_in
 
-      # Token Prequest
+      # Token Prequest, require Auth Plug
       scope "/" do
         pipe_through EchoppeWeb.Plug.Auth
         get "/csrf-prequest", UserController, :prequest
       end
 
-      # Me query
+      # Me query, require full auth pipelines
       scope "/" do
         pipe_through :auth_check
         get "/me", UserController, :me
       end
     end
 
-    # Cart Routes
+    # Cart Routes, require full auth pipelines
     scope "/cart" do
       pipe_through :auth_check
 

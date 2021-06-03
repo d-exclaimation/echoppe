@@ -45,7 +45,8 @@ defmodule EchoppeWeb.V1.CartController do
   end
 
   @doc """
-  Room view
+  Room view call
+  TODO: delete later as I am just gonna use the socket
   """
   @spec room_view(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
   def room_view(%Plug.Conn{assigns: %{current_user: _user}} = conn, %{"rid" => rid}) do

@@ -19,7 +19,7 @@ defmodule EchoppeWeb.Plug.OneTimeToken do
   def init(default), do: default
 
   @doc """
-  Get one time token user
+  Get one time token user to do "write" related request
   """
   @spec call(Plug.Conn.t(), any) :: Plug.Conn.t()
   def call(%Plug.Conn{method: "GET"} = conn, _), do: conn

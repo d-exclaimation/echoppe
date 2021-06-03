@@ -7,7 +7,7 @@
 
 defmodule Echoppe.CartQueries do
   @moduledoc """
-
+  All composable Ecto queries for Carts
   """
   import Ecto.Query
   alias Echoppe.{Cart, Repo}

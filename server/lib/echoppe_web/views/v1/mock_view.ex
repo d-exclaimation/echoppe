@@ -13,8 +13,9 @@ defmodule EchoppeWeb.V1.MockView do
   alias EchoppeWeb.V1.MockView
 
   @doc """
-  Render JSON
+  Render JSON for mock data
   """
+  # TODO: Delete this one
   def render("static.json", %{data: data, user: user}) do
     %{
       data: render_many(data, MockView, "item.json", as: :item),

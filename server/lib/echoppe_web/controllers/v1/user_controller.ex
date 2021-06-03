@@ -15,6 +15,7 @@ defmodule EchoppeWeb.V1.UserController do
 
   @doc """
   Sign up a new account
+  TODO: Add rate-limiting or limiting in general
   """
   @spec sign_up(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_up(conn, %{"user" => user_attr}) do
@@ -39,7 +40,7 @@ defmodule EchoppeWeb.V1.UserController do
     do: conn |> put_status(400) |> json(%{})
 
   @doc """
-
+  Handle sign in by checking password to hashed, also delete all csrf token
   """
   @spec sign_in(Plug.Conn.t(), %{String.t() => map()}) :: Plug.Conn.t()
   def sign_in(conn, %{"login" => %{"email" => email, "password" => password}}) do
@@ -70,7 +71,7 @@ defmodule EchoppeWeb.V1.UserController do
     do: conn |> render("me.json", user: user)
 
   @doc """
-  Prequest before sending
+  Prequest before sending POST, PUT, DELETE request
   """
   @spec prequest(PLug.Conn.t(), any) :: Plug.Conn.t()
   def prequest(conn, _) do

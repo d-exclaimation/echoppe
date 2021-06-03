@@ -26,6 +26,7 @@ defmodule Echoppe.User do
     |> validate_required([:name, :username, :email, :password_hash])
   end
 
+  # Put argon2 hash on user and remove password
   defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
     changeset
     |> change(Argon2.add_hash(password))

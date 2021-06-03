@@ -13,6 +13,7 @@ defmodule EchoppeWeb.V1.UserView do
   alias EchoppeWeb.V1.UserView
 
   @doc """
+  Render User information as JSON
   """
   @spec render(String.t(), map()) :: map()
   def render("signup.json", %{user: user}) do

@@ -11,6 +11,7 @@ defmodule Echoppe.CompoundKey do
   """
 
   @doc """
+  TODO: idk
   """
   @spec create_key() :: nil
   def create_key() do
