@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseCart = void 0;
+/**
+ * Parse RawCart into CartList
+ */
 var parseCart = function (_a) {
     var id = _a.id, title = _a.title, description = _a.description, due_date = _a.due_date, updated_at = _a.updated_at;
     return ({

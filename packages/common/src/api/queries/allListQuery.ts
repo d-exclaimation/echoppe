@@ -8,6 +8,7 @@ import { __endpoint__, __version__ } from "../../constants/index";
 import { AllCarts } from "../../model/Cart";
 import { parseCart } from "../../utils/parser/parseCart";
 
+/** all list `GET` request  */
 export const allListQuery = async () => {
   try {
     const resp = await fetch(`${__endpoint__}/${__version__}/cart/all_list`, {

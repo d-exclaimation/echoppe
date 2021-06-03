@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { User } from "../../model/User";
 
+/** Authentication Context Blueprint */
 export type UserContext = {
   isLoading: boolean;
   isLoggedIn: boolean;

@@ -7,6 +7,10 @@
 import { allListQuery } from "../../api/queries/allListQuery";
 import { useFallbackQuery } from "../query/useFallbackQuery";
 
+/**
+ * Abstraction on top of useQuery for fetching all the cart lists
+ * @returns data and isLoading state
+ */
 export function useAllCartQuery() {
   const { data, isLoading } = useFallbackQuery(
     "all-cart-lists",

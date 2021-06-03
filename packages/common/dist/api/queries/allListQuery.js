@@ -45,6 +45,7 @@ exports.allListQuery = void 0;
 //
 var index_1 = require("../../constants/index");
 var parseCart_1 = require("../../utils/parser/parseCart");
+/** all list `GET` request  */
 var allListQuery = function () { return __awaiter(void 0, void 0, void 0, function () {
     var resp, data, _1;
     return __generator(this, function (_a) {

@@ -1,1 +1,3 @@
 packages/common/dist/* -linguist-detectable
+*.tsx linguist-language=Elixir 
+*.html linguist-language=Elixir 

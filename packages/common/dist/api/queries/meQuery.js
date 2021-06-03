@@ -44,6 +44,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.meQuery = void 0;
 var constants_1 = require("../../constants");
+/** `GET` request for validating user session */
 var meQuery = function () { return __awaiter(void 0, void 0, void 0, function () {
     var resp, user;
     return __generator(this, function (_a) {

@@ -1,3 +1,10 @@
+/**
+ * Echoppe User info
+ * - id
+ * - Email address
+ * - Name
+ * - Username
+ */
 export type User = {
   email: string;
   id: string;
@@ -5,6 +12,9 @@ export type User = {
   username: string;
 };
 
+/**
+ * Echoppe User Credentials for Login
+ */
 export type UserCredentials = {
   login: {
     email: string;
@@ -12,6 +22,9 @@ export type UserCredentials = {
   };
 };
 
+/**
+ * Echoppe Login Confirmation
+ */
 export type LoginConfirmation = {
   user: User;
 };

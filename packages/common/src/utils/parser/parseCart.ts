@@ -6,6 +6,9 @@
 //
 import { CartList } from "../../model/Cart";
 
+/**
+ * Parse RawCart into CartList
+ */
 export const parseCart = ({
   id,
   title,

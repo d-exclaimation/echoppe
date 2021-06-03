@@ -44,6 +44,7 @@ exports.loginMutation = void 0;
 //  Created by d-exclaimation on 22:03.
 //
 var index_1 = require("../../constants/index");
+/** login `POST` request takes paramerter of UserCredentials */
 var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
     var resp, user, _1;
     return __generator(this, function (_a) {
