@@ -1,9 +1,5 @@
 /**
  * Echoppe User info
- * - id
- * - Email address
- * - Name
- * - Username
  */
 export type User = {
   email: string;

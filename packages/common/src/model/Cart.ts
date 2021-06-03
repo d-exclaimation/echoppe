@@ -1,12 +1,5 @@
-import { User } from "./User";
-
 /**
  * CartList Details
- * - id
- * - Title of the Cart
- * - Quick Description
- * - Due Date
- * - Updated At (for sorting)
  */
 export type CartList = {
   id: string;
@@ -17,7 +10,7 @@ export type CartList = {
 };
 
 /**
- * RawCart JSON Value <br/>
+ * RawCart JSON Value.
  * JSON does not come to parse UUID and Date all that well, so the date in encoded as string
  * and then parse as Date client side
  */
@@ -40,8 +33,4 @@ export type AllCarts = {
   data: RawCart[];
 };
 
-export type CartJoinMessage = { user: User };
-export type CartLeaveMessage = { user: User };
-export type CartJoinEvent = (resp: CartJoinMessage) => void;
-export type CartLeaveEvent = (resp: CartJoinMessage) => void;
 export type CartItem = {};

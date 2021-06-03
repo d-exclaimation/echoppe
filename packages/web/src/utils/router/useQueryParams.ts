@@ -9,15 +9,12 @@ import { useLocation } from "react-router-dom";
 
 /**
  * Abstraction for getting singular query parameters from react-router-dom
+ *
  * ---
- * Example:
- * url: `https://www.google.com/chat?id=idk-any-uuid-here-lol`
+ * e.g. url: `https://www.google.com/chat?id=idk-any-uuid-here-lol`
  * ```ts
- * const id = useQueryParam("id");
- * // >> id = "idk-any-uuid-here-lol"
- * // >> id of type string } null
+ * useQueryParam("id") === "idk-any-uuid-here-lol";
  * ```
- * ---
  * @returns string value in the parameter
  */
 export function useQueryParam(key: string) {
@@ -31,16 +28,12 @@ export function useQueryParam(key: string) {
 
 /**
  * Abstraction for getting multiple query parameters from react-router-dom
+ *
  * ---
- * Example:
- * url: `https://www.google.com/chat?id=idk-any-uuid-here-lol&locale=en&server=us-west`
+ * e.g. url: `https://www.google.com/chat?id=idk-any-uuid-here-lol&locale=en&server=us-west`
  * ```ts
- * const [id, locale, server] = useQueryParams("id", "locale", "server");
- * // >> id = "idk-any-uuid-here-lol"
- * // >> locale = "en"
- * // >> server = "us-west"
+ * useQueryParams("id", "locale", "server") === ["idk-any-uuid-here-lol", "en", "us-west"];
  * ```
- * ---
  * @returns string values as arrays in the parameter
  */
 export function useQueryParams(...keys: string[]) {

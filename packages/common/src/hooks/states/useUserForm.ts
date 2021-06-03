@@ -9,9 +9,6 @@ import { useCallback, useState } from "react";
 
 /**
  * User Form States
- * @param email email address
- * @param pass password field
- * @param isShown dictates whether password is revealed
  */
 type UserFormValue = {
   email: string;

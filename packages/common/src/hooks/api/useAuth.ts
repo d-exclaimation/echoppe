@@ -6,11 +6,6 @@ import { useFallbackQuery } from "../query/useFallbackQuery";
 /**
  * Abstraction on to useQuery specific for validating user session for echoppe's server
  *
- * Returns:
- * - `isLoading` boolean hinting whether request is still on going
- * - `isLoggedIn` boolean checking where user session is valid (user is logged in)
- * - `user` user data given by user session of type `Optional<User>` or `User | null`
- *
  * @returns an object containing the isLoading, isLoggedIn, and User state
  */
 export function useAuth() {
