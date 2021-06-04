@@ -64,6 +64,17 @@ defmodule EchoppeWeb.V1.UserController do
   end
 
   @doc """
+  Handle sign out by removing any session to the user
+  """
+  @spec sign_out(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def sign_out(conn, _) do
+    conn
+    |> fetch_session()
+    |> delete_session(:user_id)
+    |> send_resp(200, "ok")
+  end
+
+  @doc """
   Me query to check for logged in client
   """
   @spec me(Plug.Conn.t(), any) :: Plug.Conn.t()

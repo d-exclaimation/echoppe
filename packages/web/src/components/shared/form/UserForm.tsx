@@ -22,11 +22,21 @@ import React from "react";
 import { useShadow } from "../../../utils/chakra/useShadow";
 
 type Props = {
+  heading?: string;
+  subheading?: string;
+  customOnTop?: boolean;
   onSubmit: (email: string, password: string) => void;
   footer: React.ReactNode;
 };
 
-const UserForm: React.FC<Props> = ({ footer, onSubmit }) => {
+const UserForm: React.FC<Props> = ({
+  footer,
+  onSubmit,
+  customOnTop,
+  children,
+  heading,
+  subheading,
+}) => {
   const [{ email, pass, isShown }, { updateEmail, updatePass, toggler }] =
     useUserForm();
   const boxColor = useColorModeValue("orange.50", "gray.700");
@@ -52,10 +62,10 @@ const UserForm: React.FC<Props> = ({ footer, onSubmit }) => {
         p="1rem"
       >
         <Heading size="md" mb="1.5rem">
-          Welcome to Echoppe
+          {heading || "Welcome to Echoppe"}
         </Heading>
         <Heading size="sm" color="gray.500" fontWeight="light" mb="1.5rem">
-          Sign in to your account
+          {subheading || "Sign in to your account"}
         </Heading>
       </Flex>
       <form
@@ -72,6 +82,7 @@ const UserForm: React.FC<Props> = ({ footer, onSubmit }) => {
           borderWidth={border.width}
           mb="1.5rem"
         >
+          {customOnTop && (children ?? null)}
           <FormControl id="email">
             <FormLabel> Email </FormLabel>
             <Input
@@ -99,6 +110,7 @@ const UserForm: React.FC<Props> = ({ footer, onSubmit }) => {
               </InputRightElement>
             </InputGroup>
           </FormControl>
+          {!customOnTop && (children ?? null)}
         </Box>
         <Flex justify="flex-end">
           <Button colorScheme="green" type="submit">

@@ -10,7 +10,7 @@ defmodule EchoppeWeb.V1.CartController do
     Cart.List and Cart.Item Controller
   """
   use EchoppeWeb, :controller
-  alias Echoppe.{Repo, CartQueries, CartMutations, User, Cart}
+  alias Echoppe.{Repo, CartQueries, CartMutations, User}
 
   action_fallback(EchoppeWeb.FallbackController)
 
@@ -33,7 +33,7 @@ defmodule EchoppeWeb.V1.CartController do
     case CartMutations.create_list(list_attr, user) do
       {:ok, list} ->
         conn
-        |> render("new_list.json", list: list)
+        |> render("singular.json", list: list)
 
       {:error, _} ->
         conn
@@ -45,18 +45,58 @@ defmodule EchoppeWeb.V1.CartController do
   end
 
   @doc """
-  Room view call
-  TODO: delete later as I am just gonna use the socket
+  Delete a list given the correct user and permission
   """
-  @spec room_view(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
-  def room_view(%Plug.Conn{assigns: %{current_user: _user}} = conn, %{"rid" => rid}) do
-    with {:ok, uuid} <- Ecto.UUID.cast(rid),
-         %Cart.List{} = list <- CartQueries.get_list(uuid) do
+  @spec delete_list(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
+  def delete_list(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+    with {:ok, uuid} <- Ecto.UUID.cast(id),
+         {:ok, deleted} <- CartMutations.delete_list(uuid, user) do
       conn
-      |> render("new_list.json", list: list)
+      |> render("singular.json", list: deleted)
     else
-      _ ->
-        conn |> send_resp(404, "Invalid UUID or Room does not exist")
+      :error ->
+        conn
+        |> send_resp(
+          409,
+          "Invalid UUId"
+        )
+
+      {:error, %Ecto.Changeset{errors: errors}} ->
+        conn
+        |> send_resp(
+          409,
+          errors
+          |> Enum.map(fn {key, reason} -> "#{key}: #{inspect(reason)}" end)
+          |> Enum.join("\n")
+        )
+    end
+  end
+
+  @doc """
+  Update a list given the correct user and permission
+  """
+  @spec update_list(Plug.Conn.t(), %{String.t() => String.t()}) :: Plug.Conn.t()
+  def update_list(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id, "list" => list}) do
+    with {:ok, uuid} <- Ecto.UUID.cast(id),
+         {:ok, updated} <- CartMutations.update_list(uuid, list, user) do
+      conn
+      |> render("singular.json", list: updated)
+    else
+      :error ->
+        conn
+        |> send_resp(
+          409,
+          "Invalid UUId"
+        )
+
+      {:error, %Ecto.Changeset{errors: errors}} ->
+        conn
+        |> send_resp(
+          409,
+          errors
+          |> Enum.map(fn {key, reason} -> "#{key}: #{inspect(reason)}" end)
+          |> Enum.join("\n")
+        )
     end
   end
 end

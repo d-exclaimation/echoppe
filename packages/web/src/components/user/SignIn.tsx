@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
     onSuccess: () => {
       toast({
         title: "Welcome back!",
-        description: "You have successfully login",
+        description: "You have successfully loggged in",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <Flex h="50vh" alignItems="center" justifyContent="center">
+    <Flex h="90vh" alignItems="center" justifyContent="center">
       <UserForm
         onSubmit={(email, password) => {
           login({
@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
               color="teal.500"
               fontWeight="light"
             >
-              Too bad lol :p
+              Sign up here
             </Link>
           </>
         }

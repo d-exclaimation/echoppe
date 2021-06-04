@@ -18,6 +18,7 @@ defmodule EchoppeWeb.Router do
     scope "/auth" do
       post "/signup", UserController, :sign_up
       post "/signin", UserController, :sign_in
+      post "/signout", UserController, :sign_out
 
       # Token Prequest, require Auth Plug
       scope "/" do
@@ -37,8 +38,9 @@ defmodule EchoppeWeb.Router do
       pipe_through :auth_check
 
       get "/all_list", CartController, :all_list
-      get "/room/:rid", CartController, :room_view
       post "/new", CartController, :create_list
+      delete "/delete/:id", CartController, :delete_list
+      put "/update/:id", CartController, :update_list
     end
 
     if Mix.env() in [:dev, :test] do

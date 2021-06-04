@@ -32,23 +32,23 @@ defmodule EchoppeWeb.Plug.OneTimeToken do
 
     res2 =
       headers
-      |> Enum.filter(fn {key, _} -> key == "one-time-token" end)
+      |> Enum.filter(fn {key, _} -> key == "x-csrf-token" end)
 
     cond do
       res == nil || res2 == [] ->
         conn
         |> put_status(401)
-        |> text("What are you doing here, mate?")
+        |> text("What are you doing here, mate? (No Token)")
         |> halt()
 
       true ->
-        [{"one-time-token", token}] = res2
+        [{"x-csrf-token", token}] = res2
 
         if res == token do
           delete_csrf_token()
           conn |> fetch_session() |> delete_session(:one_time_token)
         else
-          conn |> put_status(401) |> text("Cannot validate") |> halt()
+          conn |> put_status(401) |> text("Cannot validate #{token}") |> halt()
         end
     end
   end
