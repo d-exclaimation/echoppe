@@ -76,7 +76,7 @@ export function useCartChannel(
     (res: { msg: string; user: User }) => {
       push("data", res)?.receive("error", optional(pushError));
     },
-    [push]
+    [push, initPayload]
   );
 
   return { insert, cart, items };

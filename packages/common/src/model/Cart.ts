@@ -10,6 +10,15 @@ export type CartList = {
 };
 
 /**
+ * Cart Data Transfer Object
+ */
+export type CartDTO = {
+  title: string;
+  description: string;
+  due_date?: string | null;
+};
+
+/**
  * RawCart JSON Value.
  * JSON does not come to parse UUID and Date all that well, so the date in encoded as string
  * and then parse as Date client side
@@ -22,7 +31,7 @@ export type RawCart = Omit<Omit<CartList, "due_date">, "updated_at"> & {
 /**
  * Fetched Singular Cart response
  */
-export type CartRoom = {
+export type Cart = {
   data: RawCart;
 };
 

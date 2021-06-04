@@ -40,6 +40,9 @@ export function useChannel<
   const socket = useContext(SocketContext);
   const channelRef = useRef<PhoenixChannel | null>(null);
 
+  // To bypass shallow comparison for useEffect
+  const initPayloadRef = (() => JSON.stringify(initPayload))();
+
   // Create a fucntion to describe the return value
   const pushMessage = useCallback(
     (event: string, payload: Channel.Payload) => {
@@ -58,19 +61,19 @@ export function useChannel<
       .receive("error", subs.error);
 
     // Applying all subscriptions filtering `init` and `error`
-    const refs: [string, number | undefined][] = Object.entries(subs)
-      .filter(([key, _]) => key !== "init" && key === "error")
-      .map(([key, resolver]) => [
+    const refs: [string, number | undefined][] = Object.entries(subs).map(
+      ([key, resolver]) => [
         key,
         channelRef.current!.on(key, (resp) => resolver(resp)),
-      ]);
+      ]
+    );
 
     // Clean out by leaving channels and unsubscribing
     return () => {
       refs.forEach(([key, ref]) => channelRef.current?.off(key, ref));
       channelRef.current?.leave();
     };
-  }, [key, initPayload]);
+  }, [key, initPayloadRef]);
 
   return pushMessage;
 }

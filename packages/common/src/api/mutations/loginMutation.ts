@@ -7,7 +7,7 @@
 import { __endpoint__, __version__ } from "../../constants/index";
 import { LoginConfirmation, UserCredentials } from "../../model/User";
 
-/** login `POST` request takes paramerter of UserCredentials */
+/** SignIn `POST` request takes paramerter of UserCredentials */
 export const loginMutation = async (body: UserCredentials) => {
   try {
     const resp = await fetch(`${__endpoint__}/${__version__}/auth/signin`, {

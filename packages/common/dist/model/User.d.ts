@@ -1,9 +1,5 @@
 /**
  * Echoppe User info
- * - id
- * - Email address
- * - Name
- * - Username
  */
 export declare type User = {
     email: string;
@@ -16,6 +12,17 @@ export declare type User = {
  */
 export declare type UserCredentials = {
     login: {
+        email: string;
+        password: string;
+    };
+};
+/**
+ * Echoppe Initial Credentials for Signing Up
+ */
+export declare type SignUpCredentials = {
+    user: {
+        name: string;
+        username: string;
         email: string;
         password: string;
     };

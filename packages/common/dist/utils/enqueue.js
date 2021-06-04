@@ -8,8 +8,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.enqueue = void 0;
 /**
- * Queued a function / callback to the macro / micro task.
- * Default option is macro task (right after the event loop).
+ * Queued a function / callback to the macro / micro task (defaults to "macro")
+ *
+ * ---
+ * e.g.
+ * ```ts
+ * enqueue(() => console.log("hello"));
+ * console.log("hello again");
+ * ```
+ * 1. hello again
+ * 2. hello
  */
 var enqueue = function (task, options) {
     if (options === void 0) { options = { task: "macro", delay: 0 }; }

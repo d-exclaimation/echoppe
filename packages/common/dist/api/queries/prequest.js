@@ -1,4 +1,10 @@
 "use strict";
+//
+//  prequest.ts
+//  echoppe
+//
+//  Created by d-exclaimation on 13:47.
+//
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,41 +42,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginMutation = void 0;
-//
-//  loginMutation.ts
-//  echoppe
-//
-//  Created by d-exclaimation on 22:03.
-//
-var index_1 = require("../../constants/index");
-/** SignIn `POST` request takes paramerter of UserCredentials */
-var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
-    var resp, user, _1;
+exports.prequest = void 0;
+var constants_1 = require("../../constants");
+/**
+ * Make a get request to fetch the prequest one-time-token
+ * @returns boolean sign that the prequest was made
+ */
+var prequest = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var resp;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/auth/signin", {
-                        method: "POST",
-                        credentials: "include",
-                        body: JSON.stringify(body),
-                        redirect: "follow",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    })];
+            case 0: return [4 /*yield*/, fetch(constants_1.__endpoint__ + "/" + constants_1.__version__ + "/auth/csrf-prequest", {
+                    method: "GET",
+                    credentials: "include",
+                })];
             case 1:
                 resp = _a.sent();
-                return [4 /*yield*/, resp.json()];
-            case 2:
-                user = (_a.sent()).user;
-                return [2 /*return*/, user];
-            case 3:
-                _1 = _a.sent();
-                throw new Error("Invalid credentials");
-            case 4: return [2 /*return*/];
+                return [2 /*return*/, resp.ok];
         }
     });
 }); };
-exports.loginMutation = loginMutation;
+exports.prequest = prequest;

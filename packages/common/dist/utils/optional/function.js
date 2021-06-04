@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.optional = void 0;
 /**
  * Applies Optional Function
- * Return a function if defined otherwise returnes a empty function
+ * @returns a function if defined otherwise returnes a empty function
  */
 var optional = function (fn) {
     return function (params) {

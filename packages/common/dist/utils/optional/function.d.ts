@@ -5,7 +5,7 @@
 declare type OptionalFunction<T = unknown> = ((params: T) => void) | undefined;
 /**
  * Applies Optional Function
- * Return a function if defined otherwise returnes a empty function
+ * @returns a function if defined otherwise returnes a empty function
  */
 export declare const optional: <T>(fn: OptionalFunction<T>) => (params: T) => (params: T) => void;
 export {};

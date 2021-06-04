@@ -19,6 +19,17 @@ export type UserCredentials = {
 };
 
 /**
+ * Echoppe Initial Credentials for Signing Up
+ */
+export type SignUpCredentials = {
+  user: {
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+  };
+};
+/**
  * Echoppe Login Confirmation
  */
 export type LoginConfirmation = {

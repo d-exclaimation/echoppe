@@ -57,7 +57,7 @@ function useCartChannel(id, user, _a) {
     var insert = react_1.useCallback(function (res) {
         var _a;
         (_a = push("data", res)) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
-    }, [push]);
+    }, [push, initPayload]);
     return { insert: insert, cart: cart, items: items };
 }
 exports.useCartChannel = useCartChannel;

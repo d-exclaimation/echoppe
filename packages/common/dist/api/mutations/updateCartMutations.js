@@ -36,41 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginMutation = void 0;
+exports.updateCartMutations = void 0;
 //
-//  loginMutation.ts
+//  updateCartMutations.ts
 //  echoppe
 //
-//  Created by d-exclaimation on 22:03.
+//  Created by d-exclaimation on 16:26.
 //
-var index_1 = require("../../constants/index");
-/** SignIn `POST` request takes paramerter of UserCredentials */
-var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
-    var resp, user, _1;
+var index_1 = require("./../../constants/index");
+var parseCart_1 = require("./../../utils/parser/parseCart");
+/** `PUT` Request Update singular cart mutations */
+var updateCartMutations = function (item) { return __awaiter(void 0, void 0, void 0, function () {
+    var resp, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/auth/signin", {
-                        method: "POST",
-                        credentials: "include",
-                        body: JSON.stringify(body),
-                        redirect: "follow",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    })];
+            case 0: return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/cart/update/" + item.id, {
+                    method: "PUT",
+                    credentials: "include",
+                    body: JSON.stringify({ list: item.body }),
+                    redirect: "follow",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-Token": item.token,
+                    },
+                })];
             case 1:
                 resp = _a.sent();
                 return [4 /*yield*/, resp.json()];
             case 2:
-                user = (_a.sent()).user;
-                return [2 /*return*/, user];
-            case 3:
-                _1 = _a.sent();
-                throw new Error("Invalid credentials");
-            case 4: return [2 /*return*/];
+                data = (_a.sent()).data;
+                return [2 /*return*/, parseCart_1.parseCart(data)];
         }
     });
 }); };
-exports.loginMutation = loginMutation;
+exports.updateCartMutations = updateCartMutations;

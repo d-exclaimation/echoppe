@@ -1,11 +1,5 @@
-import { User } from "./User";
 /**
  * CartList Details
- * - id
- * - Title of the Cart
- * - Quick Description
- * - Due Date
- * - Updated At (for sorting)
  */
 export declare type CartList = {
     id: string;
@@ -15,7 +9,15 @@ export declare type CartList = {
     updated_at: Date;
 };
 /**
- * RawCart JSON Value <br/>
+ * Cart Data Transfer Object
+ */
+export declare type CartDTO = {
+    title: string;
+    description: string;
+    due_date?: string | null;
+};
+/**
+ * RawCart JSON Value.
  * JSON does not come to parse UUID and Date all that well, so the date in encoded as string
  * and then parse as Date client side
  */
@@ -26,7 +28,7 @@ export declare type RawCart = Omit<Omit<CartList, "due_date">, "updated_at"> & {
 /**
  * Fetched Singular Cart response
  */
-export declare type CartRoom = {
+export declare type Cart = {
     data: RawCart;
 };
 /**
@@ -35,12 +37,4 @@ export declare type CartRoom = {
 export declare type AllCarts = {
     data: RawCart[];
 };
-export declare type CartJoinMessage = {
-    user: User;
-};
-export declare type CartLeaveMessage = {
-    user: User;
-};
-export declare type CartJoinEvent = (resp: CartJoinMessage) => void;
-export declare type CartLeaveEvent = (resp: CartJoinMessage) => void;
 export declare type CartItem = {};

@@ -1,4 +1,10 @@
 "use strict";
+//
+//  signUpMutation.ts
+//  echoppe
+//
+//  Created by d-exclaimation on 20:01.
+//
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,22 +42,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginMutation = void 0;
-//
-//  loginMutation.ts
-//  echoppe
-//
-//  Created by d-exclaimation on 22:03.
-//
-var index_1 = require("../../constants/index");
-/** SignIn `POST` request takes paramerter of UserCredentials */
-var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
+exports.signUpMutation = void 0;
+var constants_1 = require("../../constants");
+/** SignUp `POST` request takes paramerter of UserCredentials */
+var signUpMutation = function (body) { return __awaiter(void 0, void 0, void 0, function () {
     var resp, user, _1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch(index_1.__endpoint__ + "/" + index_1.__version__ + "/auth/signin", {
+                return [4 /*yield*/, fetch(constants_1.__endpoint__ + "/" + constants_1.__version__ + "/auth/signup", {
                         method: "POST",
                         credentials: "include",
                         body: JSON.stringify(body),
@@ -73,4 +73,4 @@ var loginMutation = function (body) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-exports.loginMutation = loginMutation;
+exports.signUpMutation = signUpMutation;

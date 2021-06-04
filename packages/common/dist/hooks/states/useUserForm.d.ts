@@ -1,9 +1,6 @@
 /// <reference types="react" />
 /**
  * User Form States
- * @param email email address
- * @param pass password field
- * @param isShown dictates whether password is revealed
  */
 declare type UserFormValue = {
     email: string;
