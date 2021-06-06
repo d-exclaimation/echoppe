@@ -37,4 +37,12 @@ export declare type Cart = {
 export declare type AllCarts = {
     data: RawCart[];
 };
-export declare type CartItem = {};
+export declare type CartItem = {
+    id: string;
+    label: string;
+    price: number;
+};
+export declare type CartItemDTO = {
+    label: string;
+    price: number;
+};

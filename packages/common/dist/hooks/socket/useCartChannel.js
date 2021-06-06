@@ -33,31 +33,38 @@ var defaultErrorHandler = {
  */
 function useCartChannel(id, user, _a) {
     var _b = _a === void 0 ? defaultErrorHandler : _a, pushError = _b.pushError, joinError = _b.joinError;
-    // Temporarily states holding the current cart and items (atm strings)
     var _c = react_1.useState([]), items = _c[0], setItems = _c[1];
     var _d = react_1.useState(null), cart = _d[0], setCart = _d[1];
     // using useChannel Hook providing, only one event of `data`
-    var initPayload = { user: user };
+    var initPayload = react_1.useMemo(function () { return ({ user: user }); }, [user]);
     var push = useChannel_1.useChannel("cart:" + id, initPayload, {
-        // `data` event gives msg and user which will just temp put into items state
-        data: function (_a) {
-            var msg = _a.msg, user = _a.user;
-            return setItems(function (prev) { return __spreadArray(__spreadArray([], prev), [user.username + ": " + msg]); });
+        insert: function (_a) {
+            var payload = _a.payload;
+            setItems(function (prev) { return __spreadArray(__spreadArray([], prev), [payload]); });
+        },
+        delete: function (_a) {
+            var payload = _a.payload;
+            setItems(function (prev) { return prev.filter(function (item) { return item.id != payload.id; }); });
         },
         // required event subscriptions, join will gives use cart details which is set as state
         init: function (_a) {
-            var data = _a.data, list = _a.list;
-            setItems(data);
+            var items = _a.items, list = _a.list;
+            console.log("this is reloaded");
+            setItems(items);
             setCart(parseCart_1.parseCart(list));
         },
         // set the joinError optionally otherwise gives a blank function
         error: function_1.optional(joinError),
     });
     // Insert uses the data event to pass a payload, and all the error will be handle optionally
-    var insert = react_1.useCallback(function (res) {
+    var insert = react_1.useCallback(function (item) {
         var _a;
-        (_a = push("data", res)) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
+        (_a = push("insert", { item: item })) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
     }, [push, initPayload]);
-    return { insert: insert, cart: cart, items: items };
+    var remove = react_1.useCallback(function (item) {
+        var _a;
+        (_a = push("delete", { id: item.id })) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
+    }, [push, initPayload]);
+    return { insert: insert, cart: cart, items: items, remove: remove };
 }
 exports.useCartChannel = useCartChannel;

@@ -1,5 +1,5 @@
 import { User } from "../../model/User";
-import { CartList } from "./../../model/Cart";
+import { CartItem, CartItemDTO, CartList } from "./../../model/Cart";
 import { Channel } from "./../../model/Channel";
 /** Types of error handling callbacks */
 declare type ErrorHandler = {
@@ -17,11 +17,9 @@ declare type ErrorHandler = {
  * @returns all the states and `insert` function to broadcast changes
  */
 export declare function useCartChannel(id: string, user: User | null, { pushError, joinError }?: ErrorHandler): {
-    insert: (res: {
-        msg: string;
-        user: User;
-    }) => void;
+    insert: (item: CartItemDTO) => void;
     cart: CartList | null;
-    items: string[];
+    items: CartItem[];
+    remove: (item: CartItem) => void;
 };
 export {};

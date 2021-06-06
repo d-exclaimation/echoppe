@@ -42,4 +42,13 @@ export type AllCarts = {
   data: RawCart[];
 };
 
-export type CartItem = {};
+export type CartItem = {
+  id: string;
+  label: string;
+  price: number;
+};
+
+export type CartItemDTO = {
+  label: string;
+  price: number;
+};
