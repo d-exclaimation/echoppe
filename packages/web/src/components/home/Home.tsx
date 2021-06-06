@@ -119,9 +119,11 @@ const Home: React.FC = () => {
           aria-label="add-new"
           size="md"
           fontSize="lg"
-          borderRadius="50%"
-          colorScheme="teal"
+          colorScheme="whatsapp"
           p="2"
+          position="fixed"
+          right="2vw"
+          bottom="1vw"
           marginLeft="2"
           icon={<FaPlus />}
           onClick={() => setCreating(true)}

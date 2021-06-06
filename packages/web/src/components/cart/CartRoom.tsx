@@ -5,27 +5,20 @@
 //  Created by d-exclaimation on 17:22.
 //
 
-import {
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Skeleton,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Skeleton, useToast } from "@chakra-ui/react";
 import { enqueue, useAuth, useCartChannel } from "@echoppe/common";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useQueryParam } from "../../utils/router/useQueryParams";
+import CartForm from "./CartForm";
+import CartItem from "./CartItem";
 
 const CartRoom: React.FC = () => {
   const { user, isLoading: isAuthLoading } = useAuth();
   const history = useHistory();
-  const [input, setInput] = useState("");
   const id = useQueryParam("id");
   const toast = useToast();
-  const { insert, items, cart } = useCartChannel(id ?? "", user, {
+  const { insert, remove, items, cart } = useCartChannel(id ?? "", user, {
     joinError: ({ reason }) => {
       toast({
         title: reason,
@@ -46,6 +39,18 @@ const CartRoom: React.FC = () => {
       }),
   });
 
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>, label: string, price: number) => {
+      e.preventDefault();
+      if (!label) return;
+      insert({
+        label: label,
+        price: price,
+      });
+    },
+    [insert]
+  );
+
   if (!isAuthLoading && !user) {
     enqueue(() => history.push("/sign-in"));
     return null;
@@ -61,58 +66,17 @@ const CartRoom: React.FC = () => {
           </Heading>
         </Skeleton>
       </Heading>
-      <Flex flexDir="column" w="60vmax" maxW="90vw">
-        <Flex
-          flexDir="column"
-          p="1rem"
-          my="1rem"
-          borderWidth=".1rem"
-          borderRadius="5"
-        >
-          {items.map((msg, idx) => {
-            const [username, content] = msg.split(": ");
+      <Flex flexDir="column" w="80vw" maxW="90vw">
+        <Flex flexDir="column" my="1rem">
+          {items.map((item) => {
             return (
-              <Text key={idx}>
-                <Text
-                  as="b"
-                  color={
-                    username === "server"
-                      ? "gray.500"
-                      : username === user?.username
-                      ? "green.500"
-                      : "blue.500"
-                  }
-                  fontWeight="semibold"
-                >
-                  {username}:{" "}
-                </Text>
-                {content}
-              </Text>
+              <Box key={item.id} my="0.5rem">
+                <CartItem item={item} onDelete={remove} />
+              </Box>
             );
           })}
         </Flex>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (!input) return;
-            insert({
-              msg: input,
-              user: user!,
-            });
-            setInput("");
-          }}
-        >
-          <Flex>
-            <Input
-              mr="1rem"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
-            <Button colorScheme="green" type="submit">
-              Send
-            </Button>
-          </Flex>
-        </form>
+        <CartForm handleSubmit={handleSubmit} />
       </Flex>
     </Flex>
   );
