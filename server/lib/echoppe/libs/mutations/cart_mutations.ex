@@ -60,6 +60,27 @@ defmodule Echoppe.CartMutations do
     end
   end
 
+  @doc """
+  Insert a new item into a Cart
+  """
+  @spec insert_item(%Cart.List{}, map()) :: {:ok, %Cart.Item{}} | {:error, Ecto.Changeset.t()}
+  def insert_item(cart, item_attr) do
+    cart
+    |> Ecto.build_assoc(:cart_item)
+    |> Cart.Item.changeset(item_attr)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Delete an item from a cart
+  """
+  @spec delete_item(Ecto.UUID.t()) :: {:ok, %Cart.Item{}} | {:error, Ecto.Changeset.t()}
+  def delete_item(id) do
+    Cart.Item
+    |> Repo.get(id)
+    |> Repo.delete()
+  end
+
   defp verify_user(%Cart.List{user_id: owner} = list, %User{id: id}) when owner == id, do: list
   defp verify_user(_, _), do: nil
 end

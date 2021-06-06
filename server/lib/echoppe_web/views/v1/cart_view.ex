@@ -15,7 +15,13 @@ defmodule EchoppeWeb.V1.CartView do
   @doc """
   Render Cart.List either one or many
   """
-  @spec render(String.t(), %{lists: [%Echoppe.Cart.List{}]} | %{list: %Echoppe.Cart.List{}}) ::
+  @spec render(
+          String.t(),
+          %{lists: [%Echoppe.Cart.List{}]}
+          | %{list: %Echoppe.Cart.List{}}
+          | %{items: [%Echoppe.Cart.Item{}]}
+          | %{item: %Echoppe.Cart.Item{}}
+        ) ::
           map()
   def render("all_list.json", %{lists: lists}) do
     %{data: render_many(lists, CartView, "list.json", as: :list)}
@@ -33,4 +39,27 @@ defmodule EchoppeWeb.V1.CartView do
       updated_at: list.updated_at,
       due_date: list.due_date
     }
+
+  def render("items.json", %{items: items}) do
+    render_many(items, CartView, "item.json", as: :item)
+  end
+
+  def render("item.json", %{item: item}) do
+    %{
+      id: item.id,
+      label: item.label,
+      price: item.price
+    }
+  end
+
+  @doc """
+  Render data update for cart.list
+  """
+  @spec render_update(%Echoppe.Cart.List{}) :: map()
+  def render_update(list) do
+    %{
+      items: render("items.json", %{items: list.cart_item}),
+      list: render("list.json", %{list: list})
+    }
+  end
 end

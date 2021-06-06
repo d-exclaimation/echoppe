@@ -28,6 +28,9 @@ defmodule Echoppe.CartQueries do
   """
   @spec get_list(Ecto.UUID.t()) :: %Cart.List{} | nil
   def get_list(uuid) do
-    Repo.get(Cart.List, uuid)
+    Cart.List
+    |> Repo.get(uuid)
+    |> Repo.preload(:cart_item)
+    |> Repo.preload(:user)
   end
 end

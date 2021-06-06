@@ -9,6 +9,7 @@ defmodule Echoppe.Cart.List do
     field :due_date, :utc_datetime_usec
     field :title, :string
     belongs_to :user, Echoppe.User
+    has_many :cart_item, Echoppe.Cart.Item
 
     timestamps()
   end
