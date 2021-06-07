@@ -10,7 +10,7 @@ export declare type ThreadTask = () => void;
  * clearTimeout(ref);
  * ```
  */
-export declare type TaskQueue<Fn extends ThreadTask> = NodeJS.Timeout | Promise<void | ReturnType<Fn>>;
+export declare type TaskQueue<Fn extends ThreadTask> = number | NodeJS.Timeout | Promise<void | ReturnType<Fn>>;
 /**
  * QueueOptions
  * Macro / Micro task

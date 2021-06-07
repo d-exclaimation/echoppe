@@ -18,6 +18,7 @@ export type ThreadTask = () => void;
  * ```
  */
 export type TaskQueue<Fn extends ThreadTask> =
+  | number
   | NodeJS.Timeout
   | Promise<void | ReturnType<Fn>>;
 
