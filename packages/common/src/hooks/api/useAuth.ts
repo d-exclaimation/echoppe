@@ -103,7 +103,7 @@ export function useSignOutMutation({ onSuccess, onError }: LoginSideEffects) {
  * @returns the fetching function
  */
 
-export function usePrequest() {
+export function usePrequest(isWeb: boolean) {
   const { data, isLoading, isError, refetch } = useQuery(
     "one-time-token",
     prequest,
@@ -112,7 +112,7 @@ export function usePrequest() {
     }
   );
   if (data && !isError && !isLoading) {
-    const cookies = parseCookie();
+    const cookies = parseCookie(data, isWeb);
     return {
       isLoadingToken: isLoading,
       isTokenError: isError,

@@ -39,7 +39,7 @@ const UserForm: React.FC<Props> = ({
 }) => {
   const [{ email, pass, isShown }, { updateEmail, updatePass, toggler }] =
     useUserForm();
-  const boxColor = useColorModeValue("orange.50", "gray.700");
+  const boxColor = useColorModeValue("orange.100", "gray.700");
   const color = useColorModeValue("gray.50", "gray.800");
   const border = useColorModeValue(
     { color: "gray.400", width: "1px" },

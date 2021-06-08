@@ -5,7 +5,7 @@ import { User } from "../../model/User";
 export type UserContext = {
   isLoading: boolean;
   isLoggedIn: boolean;
-  user: User | null | undefined;
+  user: User | null;
 };
 
 export const AuthContext = createContext<UserContext>({

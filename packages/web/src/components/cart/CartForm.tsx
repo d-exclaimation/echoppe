@@ -33,7 +33,7 @@ const CartForm: React.FC<Props> = ({ handleSubmit }) => {
   const [input, setInput] = useState("");
   const [price, setPrice] = useState(0);
   const [isExpanded, setExpanded] = useState(false);
-  const boxColor = useColorModeValue("orange.50", "gray.700");
+  const boxColor = useColorModeValue("orange.100", "gray.700");
   const color = useColorModeValue("gray.50", "gray.800");
 
   return (

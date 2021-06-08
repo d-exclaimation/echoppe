@@ -58,14 +58,11 @@ const CartRoom: React.FC = () => {
 
   return (
     <Flex alignItems="center" flexDir="column" justifyContent="center">
-      <Heading fontWeight="light" size="sm">
-        Welcome to Cart.List Room{" "}
-        <Skeleton isLoaded={!!cart}>
-          <Heading size="sm" fontWeight="semibold" color="gray.500">
-            {cart?.title}
-          </Heading>
-        </Skeleton>
-      </Heading>
+      <Skeleton isLoaded={!!cart}>
+        <Heading size="sm" fontWeight="semibold" color="gray.500">
+          {cart?.title}
+        </Heading>
+      </Skeleton>
       <Flex flexDir="column" w="80vw" maxW="90vw">
         <Flex flexDir="column" my="1rem">
           {items.map((item) => {
