@@ -29,10 +29,6 @@ import Cart from "./Cart";
 
 const Home: React.FC = () => {
   const [isCreating, setCreating] = useState(false);
-  const { isLoading, isLoggedIn, user } = useContext(AuthContext);
-  const history = useHistory();
-  const { data } = useAllCartQuery();
-  const { token, isLoadingToken, isErrorToken } = usePrequest();
   const toast = useToast();
   const errorResponse = useCallback(
     (title: "Creation" | "Update" | "Deletion") => {
@@ -58,6 +54,12 @@ const Home: React.FC = () => {
     },
     [toast]
   );
+  const { isLoading, isLoggedIn, user } = useContext(AuthContext);
+  const history = useHistory();
+
+  // API Hooks
+  const { data } = useAllCartQuery(); // -> fetch all data
+  const { token, isLoadingToken, isErrorToken } = usePrequest(true); // -> fetch token
   const updateCart = useUpdateCartMutations({
     onError: () => errorResponse("Update"),
     onSuccess: () => successResponse("Update"),

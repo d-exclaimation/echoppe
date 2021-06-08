@@ -10,7 +10,10 @@ export function useColor() {
   const isDarkMode = useColorScheme() === "dark";
   return StyleSheet.create({
     background: {
-      backgroundColor: isDarkMode ? "#1A202C" : "#F7FAFC",
+      backgroundColor: isDarkMode ? "#1A202C" : "#ffffff",
+    },
+    dimmed: {
+      backgroundColor: isDarkMode ? "#2D3748" : "#fafafa",
     },
     backlayer: {
       backgroundColor: isDarkMode ? "#2D3748" : "#FEEBC8",

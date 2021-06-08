@@ -12,4 +12,9 @@ export const base = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  flexToLeft: {
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
 });

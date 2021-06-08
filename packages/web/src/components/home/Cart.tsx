@@ -13,6 +13,7 @@ import {
   Link,
   Spacer,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { CartDTO, CartList } from "@echoppe/common";
 import React, { useState } from "react";
@@ -28,39 +29,43 @@ type Props = {
 };
 
 const Cart: React.FC<Props> = ({ cart, onEdit, canEdit, onDelete }) => {
+  const boxColor = useColorModeValue("orange.100", "gray.700");
+  const color = useColorModeValue("gray.50", "gray.800");
   const [isEdited, setEdited] = useState(false);
   return (
-    <Box p={5} borderWidth=".1rem" overflow="clip" borderRadius={5}>
-      <Flex>
-        <Link as={RouterLink} to={`/cart?id=${cart.id}`}>
-          <Heading fontSize="xl">{cart.title}</Heading>
-        </Link>
-        <Spacer />
-        <IconButton
-          colorScheme="facebook"
-          aria-label="edit"
-          size="sm"
-          disabled={!canEdit}
-          onClick={() => setEdited(true)}
-          icon={<AiTwotoneEdit />}
-          mr="2"
+    <Box bg={boxColor} overflow="clip" borderRadius={5}>
+      <Box ml={2} p={5} bg={color} flexGrow={1}>
+        <Flex>
+          <Link as={RouterLink} to={`/cart?id=${cart.id}`}>
+            <Heading fontSize="xl">{cart.title}</Heading>
+          </Link>
+          <Spacer />
+          <IconButton
+            colorScheme="facebook"
+            aria-label="edit"
+            size="sm"
+            disabled={!canEdit}
+            onClick={() => setEdited(true)}
+            icon={<AiTwotoneEdit />}
+            mr="2"
+          />
+          <IconButton
+            colorScheme="red"
+            aria-label="delete"
+            size="sm"
+            disabled={!canEdit}
+            onClick={() => onDelete(cart.id)}
+            icon={<AiTwotoneDelete />}
+          />
+        </Flex>
+        <Text mt={4}>{cart.due_date?.toUTCString() ?? cart.description}</Text>
+        <EditCartModal
+          edited={cart}
+          onClose={() => setEdited(false)}
+          isOpen={isEdited}
+          onSubmit={(item) => onEdit(item, cart.id)}
         />
-        <IconButton
-          colorScheme="red"
-          aria-label="delete"
-          size="sm"
-          disabled={!canEdit}
-          onClick={() => onDelete(cart.id)}
-          icon={<AiTwotoneDelete />}
-        />
-      </Flex>
-      <Text mt={4}>{cart.due_date?.toUTCString() ?? "No due date"}</Text>
-      <EditCartModal
-        edited={cart}
-        onClose={() => setEdited(false)}
-        isOpen={isEdited}
-        onSubmit={(item) => onEdit(item, cart.id)}
-      />
+      </Box>
     </Box>
   );
 };
