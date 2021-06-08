@@ -19,5 +19,5 @@ export const prequest = async () => {
       credentials: "include",
     }
   );
-  return resp.ok;
+  return resp.headers;
 };

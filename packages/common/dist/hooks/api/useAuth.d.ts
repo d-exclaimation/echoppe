@@ -38,17 +38,17 @@ export declare function useSignOutMutation({ onSuccess, onError }: LoginSideEffe
  *
  * @returns the fetching function
  */
-export declare function usePrequest(): {
+export declare function usePrequest(isWeb: boolean): {
     isLoadingToken: false;
     isTokenError: false;
     token: string | null;
-    refetch: (options?: import("react-query").RefetchOptions | undefined) => Promise<import("react-query").QueryObserverResult<boolean, unknown>>;
+    refetch: (options?: import("react-query").RefetchOptions | undefined) => Promise<import("react-query").QueryObserverResult<Headers, unknown>>;
     isErrorToken?: undefined;
 } | {
     isErrorToken: boolean;
     isLoadingToken: boolean;
     token: null;
-    refetch: (options?: import("react-query").RefetchOptions | undefined) => Promise<import("react-query").QueryObserverResult<boolean, unknown>>;
+    refetch: (options?: import("react-query").RefetchOptions | undefined) => Promise<import("react-query").QueryObserverResult<Headers, unknown>>;
     isTokenError?: undefined;
 };
 export {};

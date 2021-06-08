@@ -58,7 +58,7 @@ var prequest = function () { return __awaiter(void 0, void 0, void 0, function (
                 })];
             case 1:
                 resp = _a.sent();
-                return [2 /*return*/, resp.ok];
+                return [2 /*return*/, resp.headers];
         }
     });
 }); };

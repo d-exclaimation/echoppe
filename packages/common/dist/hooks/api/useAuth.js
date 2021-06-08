@@ -94,13 +94,13 @@ exports.useSignOutMutation = useSignOutMutation;
  *
  * @returns the fetching function
  */
-function usePrequest() {
+function usePrequest(isWeb) {
     var _a;
     var _b = react_query_1.useQuery("one-time-token", prequest_1.prequest, {
         retry: 0,
     }), data = _b.data, isLoading = _b.isLoading, isError = _b.isError, refetch = _b.refetch;
     if (data && !isError && !isLoading) {
-        var cookies = parseCookie_1.parseCookie();
+        var cookies = parseCookie_1.parseCookie(data, isWeb);
         return {
             isLoadingToken: isLoading,
             isTokenError: isError,
