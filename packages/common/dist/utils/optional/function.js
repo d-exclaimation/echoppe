@@ -12,8 +12,6 @@ exports.optional = void 0;
  * @returns a function if defined otherwise returnes a empty function
  */
 var optional = function (fn) {
-    return function (params) {
-        return fn !== null && fn !== void 0 ? fn : (function () { });
-    };
+    return fn !== null && fn !== void 0 ? fn : (function () { });
 };
 exports.optional = optional;

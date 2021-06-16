@@ -43,11 +43,6 @@ type UpdatePayload = {
 /**
  * ~Abstraction on top useChannel for handling Cart Room Channel~
  *
- * TODO: Some the functionalities are temporarily
- * - `items` should be replaced with state of the cart and all of its items
- * - `insert` should be using a better event name
- * - missing `update`, `delete` function if these functionalities are seperated
- *
  * @returns all the states and `insert` function to broadcast changes
  */
 export function useCartChannel(
@@ -62,7 +57,10 @@ export function useCartChannel(
   const initPayload: UserJoin = useMemo(() => ({ user }), [user]);
   const push = useChannel(`cart:${id}`, initPayload, {
     insert: ({ payload }: UpdatePayload) => {
-      setItems((prev) => [...prev, payload]);
+      setItems((prev) => [
+        ...prev.filter((item) => item.id != payload.id),
+        payload,
+      ]);
     },
 
     delete: ({ payload }: UpdatePayload) => {
@@ -71,7 +69,6 @@ export function useCartChannel(
 
     // required event subscriptions, join will gives use cart details which is set as state
     init: ({ items, list }: InitPayload) => {
-      console.log("this is reloaded");
       setItems(items);
       setCart(parseCart(list));
     },
@@ -85,14 +82,14 @@ export function useCartChannel(
     (item: CartItemDTO) => {
       push("insert", { item })?.receive("error", optional(pushError));
     },
-    [push, initPayload]
+    [push]
   );
 
   const remove = useCallback(
     (item: CartItem) => {
       push("delete", { id: item.id })?.receive("error", optional(pushError));
     },
-    [push, initPayload]
+    [push]
   );
 
   return { insert, cart, items, remove };

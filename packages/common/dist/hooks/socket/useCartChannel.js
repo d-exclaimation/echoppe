@@ -24,11 +24,6 @@ var defaultErrorHandler = {
 /**
  * ~Abstraction on top useChannel for handling Cart Room Channel~
  *
- * TODO: Some the functionalities are temporarily
- * - `items` should be replaced with state of the cart and all of its items
- * - `insert` should be using a better event name
- * - missing `update`, `delete` function if these functionalities are seperated
- *
  * @returns all the states and `insert` function to broadcast changes
  */
 function useCartChannel(id, user, _a) {
@@ -40,7 +35,9 @@ function useCartChannel(id, user, _a) {
     var push = useChannel_1.useChannel("cart:" + id, initPayload, {
         insert: function (_a) {
             var payload = _a.payload;
-            setItems(function (prev) { return __spreadArray(__spreadArray([], prev), [payload]); });
+            setItems(function (prev) { return __spreadArray(__spreadArray([], prev.filter(function (item) { return item.id != payload.id; })), [
+                payload,
+            ]); });
         },
         delete: function (_a) {
             var payload = _a.payload;
@@ -49,7 +46,6 @@ function useCartChannel(id, user, _a) {
         // required event subscriptions, join will gives use cart details which is set as state
         init: function (_a) {
             var items = _a.items, list = _a.list;
-            console.log("this is reloaded");
             setItems(items);
             setCart(parseCart_1.parseCart(list));
         },
@@ -60,11 +56,11 @@ function useCartChannel(id, user, _a) {
     var insert = react_1.useCallback(function (item) {
         var _a;
         (_a = push("insert", { item: item })) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
-    }, [push, initPayload]);
+    }, [push]);
     var remove = react_1.useCallback(function (item) {
         var _a;
         (_a = push("delete", { id: item.id })) === null || _a === void 0 ? void 0 : _a.receive("error", function_1.optional(pushError));
-    }, [push, initPayload]);
+    }, [push]);
     return { insert: insert, cart: cart, items: items, remove: remove };
 }
 exports.useCartChannel = useCartChannel;

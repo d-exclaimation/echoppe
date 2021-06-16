@@ -21,7 +21,7 @@ const defaultHandler = {
  * Subscriptions are callbacks from events which includes on initial join and error response
  * - `init` takes a generic parameter InitParams (server `join/3` response)
  * - `error` takes a generic parameter ErrorResponse (server `join/3` response)
- * - `<any_event>` takes client-defined params (server `handle_in/3` response)
+ * - `[any-event: string]` takes client-defined params (server `handle_in/3` response)
  * @returns push message to event function
  */
 export function useChannel<
@@ -36,12 +36,12 @@ export function useChannel<
     error: (resp: ErrorResponse) => void;
   } = defaultHandler
 ) {
-  // Grab sockets from context , initialize channel mutatable referrences
+  // Grab sockets from context , initialize channel mutatable referrences (no need for rerendering)
   const socket = useContext(SocketContext);
   const channelRef = useRef<PhoenixChannel | null>(null);
 
   // To bypass shallow comparison for useEffect
-  const initPayloadRef = (() => JSON.stringify(initPayload))();
+  const initPayloadHash = (() => JSON.stringify(initPayload))();
 
   // Create a fucntion to describe the return value
   const pushMessage = useCallback(
@@ -64,7 +64,7 @@ export function useChannel<
     const refs: [string, number | undefined][] = Object.entries(subs).map(
       ([key, resolver]) => [
         key,
-        channelRef.current!.on(key, (resp) => resolver(resp)),
+        channelRef.current?.on(key, (resp) => resolver(resp)),
       ]
     );
 
@@ -73,7 +73,7 @@ export function useChannel<
       refs.forEach(([key, ref]) => channelRef.current?.off(key, ref));
       channelRef.current?.leave();
     };
-  }, [key, initPayloadRef]);
+  }, [key, initPayloadHash]);
 
   return pushMessage;
 }
